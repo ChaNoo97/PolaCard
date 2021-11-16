@@ -13,6 +13,10 @@
 		FECA36F42742D02E00C01FF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECA36F22742D02E00C01FF8 /* Main.storyboard */; };
 		FECA36F62742D03100C01FF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECA36F52742D03100C01FF8 /* Assets.xcassets */; };
 		FECA36F92742D03100C01FF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECA36F72742D03100C01FF8 /* LaunchScreen.storyboard */; };
+		FECA37022743912000C01FF8 /* Look.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECA37012743912000C01FF8 /* Look.storyboard */; };
+		FECA37042743914A00C01FF8 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECA37032743914A00C01FF8 /* Setting.storyboard */; };
+		FECA37062743916E00C01FF8 /* Album.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECA37052743916E00C01FF8 /* Album.storyboard */; };
+		FECA37082743917E00C01FF8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECA37072743917E00C01FF8 /* Map.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		FECA36F52742D03100C01FF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FECA36F82742D03100C01FF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FECA36FA2742D03100C01FF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FECA37012743912000C01FF8 /* Look.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Look.storyboard; sourceTree = "<group>"; };
+		FECA37032743914A00C01FF8 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		FECA37052743916E00C01FF8 /* Album.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Album.storyboard; sourceTree = "<group>"; };
+		FECA37072743917E00C01FF8 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,27 @@
 		FECA36EB2742D02E00C01FF8 /* PhotoCard */ = {
 			isa = PBXGroup;
 			children = (
+				FECA370027438CFC00C01FF8 /* StroyBoard */,
 				FECA36EC2742D02E00C01FF8 /* AppDelegate.swift */,
 				FECA36EE2742D02E00C01FF8 /* SceneDelegate.swift */,
 				FECA36F02742D02E00C01FF8 /* ViewController.swift */,
-				FECA36F22742D02E00C01FF8 /* Main.storyboard */,
 				FECA36F52742D03100C01FF8 /* Assets.xcassets */,
 				FECA36F72742D03100C01FF8 /* LaunchScreen.storyboard */,
 				FECA36FA2742D03100C01FF8 /* Info.plist */,
 			);
 			path = PhotoCard;
+			sourceTree = "<group>";
+		};
+		FECA370027438CFC00C01FF8 /* StroyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				FECA36F22742D02E00C01FF8 /* Main.storyboard */,
+				FECA37012743912000C01FF8 /* Look.storyboard */,
+				FECA37032743914A00C01FF8 /* Setting.storyboard */,
+				FECA37052743916E00C01FF8 /* Album.storyboard */,
+				FECA37072743917E00C01FF8 /* Map.storyboard */,
+			);
+			path = StroyBoard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +146,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FECA36F92742D03100C01FF8 /* LaunchScreen.storyboard in Resources */,
+				FECA37082743917E00C01FF8 /* Map.storyboard in Resources */,
 				FECA36F62742D03100C01FF8 /* Assets.xcassets in Resources */,
+				FECA37062743916E00C01FF8 /* Album.storyboard in Resources */,
+				FECA37042743914A00C01FF8 /* Setting.storyboard in Resources */,
 				FECA36F42742D02E00C01FF8 /* Main.storyboard in Resources */,
+				FECA37022743912000C01FF8 /* Look.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +321,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,7 +331,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -325,6 +350,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,7 +360,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
