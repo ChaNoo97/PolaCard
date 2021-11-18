@@ -29,7 +29,7 @@
         <scene sceneID="24B-07-eI9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j6i-oG-z3v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="square.and.arrow.down" catalog="system" id="VgO-y5-Obd"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="square.stack" catalog="system" id="VgO-y5-Obd"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="C3F-7u-66U">
@@ -47,7 +47,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
+        <image name="square.stack" catalog="system" width="113" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

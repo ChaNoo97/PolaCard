@@ -16,10 +16,32 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UcF-hN-VFB">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uVy-HI-VBJ">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="UcF-hN-VFB" secondAttribute="bottom" id="H7O-jB-tWw"/>
+                            <constraint firstItem="UcF-hN-VFB" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="fmN-es-U5a"/>
+                            <constraint firstItem="UcF-hN-VFB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ne0-Ex-KQI"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="UcF-hN-VFB" secondAttribute="trailing" id="uIz-sN-Zsx"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="e8R-qn-sG9"/>
+                    <connections>
+                        <outlet property="mainCollectionView" destination="UcF-hN-VFB" id="nCO-db-BbJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -29,7 +51,7 @@
         <scene sceneID="2tH-WC-gWp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="khw-Ch-5DD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="folder.fill" catalog="system" id="aAx-jh-D7l"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="house" catalog="system" id="aAx-jh-D7l"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kKV-HY-C0W">
@@ -47,7 +69,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="folder.fill" catalog="system" width="128" height="97"/>
+        <image name="house" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
