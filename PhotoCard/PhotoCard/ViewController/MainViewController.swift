@@ -13,11 +13,11 @@ class MainViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
+		navigationItem.title = "Main"
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self
-		let nibName = UINib(nibName: MainCollectionViewCell.identfier, bundle: nil)
-		mainCollectionView.register(nibName, forCellWithReuseIdentifier: MainCollectionViewCell.identfier)
+		let nibName = UINib(nibName: MainCollectionViewCell.identifier, bundle: nil)
+		mainCollectionView.register(nibName, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
 		mainCollectionView.isPagingEnabled = true
 		
 		let layout = UICollectionViewFlowLayout()
@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
 		layout.itemSize = CGSize(width: width, height: height)
 		layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
 		layout.minimumLineSpacing = 2*spacing
-		layout.minimumInteritemSpacing = 2*spacing
+		
 		layout.scrollDirection = .horizontal
 		
 		mainCollectionView.collectionViewLayout = layout
@@ -42,8 +42,8 @@ class MainViewController: UIViewController {
 	@objc func rightButtonClicked(_ sender: UIBarButtonItem) {
 		let sb = UIStoryboard.init(name: "Add", bundle: nil)
 		let vc = sb.instantiateViewController(withIdentifier: AddViewController.identifier)
-		
-		navigationController?.pushViewController(vc, animated: true)
+		vc.modalPresentationStyle = .fullScreen
+		present(vc, animated: true, completion: nil)
 	}
 	
     

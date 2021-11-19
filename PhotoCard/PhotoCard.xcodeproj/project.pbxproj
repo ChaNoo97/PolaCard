@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		FE579ADA27464B1B000C258E /* Main + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AD927464B1B000C258E /* Main + Extension.swift */; };
+		FE579AE527478461000C258E /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AE327478461000C258E /* AlbumCollectionViewCell.swift */; };
+		FE579AE627478461000C258E /* AlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE579AE427478461000C258E /* AlbumCollectionViewCell.xib */; };
+		FE579AE82747E865000C258E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AE72747E865000C258E /* SettingTableViewCell.swift */; };
 		FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491F82744DCE600AB8995 /* AlbumViewController.swift */; };
 		FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491FE2744DDF200AB8995 /* MainViewController.swift */; };
 		FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7492002744DE0700AB8995 /* SettingViewController.swift */; };
@@ -34,6 +37,9 @@
 
 /* Begin PBXFileReference section */
 		FE579AD927464B1B000C258E /* Main + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Main + Extension.swift"; sourceTree = "<group>"; };
+		FE579AE327478461000C258E /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE579AE427478461000C258E /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
+		FE579AE72747E865000C258E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		FE7491F82744DCE600AB8995 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		FE7491FE2744DDF200AB8995 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FE7492002744DE0700AB8995 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,8 @@
 			children = (
 				FE7492192746384800AB8995 /* MainCollectionViewCell.swift */,
 				FE74921A2746384800AB8995 /* MainCollectionViewCell.xib */,
+				FE579AE327478461000C258E /* AlbumCollectionViewCell.swift */,
+				FE579AE427478461000C258E /* AlbumCollectionViewCell.xib */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -122,6 +130,7 @@
 				FECA36F52742D03100C01FF8 /* Assets.xcassets */,
 				FECA36F72742D03100C01FF8 /* LaunchScreen.storyboard */,
 				FECA36FA2742D03100C01FF8 /* Info.plist */,
+				FE579AE72747E865000C258E /* SettingTableViewCell.swift */,
 				FE579AD927464B1B000C258E /* Main + Extension.swift */,
 			);
 			path = PhotoCard;
@@ -204,6 +213,7 @@
 				FE7492052744E60800AB8995 /* Main.storyboard in Resources */,
 				FE74920D274623F700AB8995 /* Look.storyboard in Resources */,
 				FE749209274623DE00AB8995 /* Add.storyboard in Resources */,
+				FE579AE627478461000C258E /* AlbumCollectionViewCell.xib in Resources */,
 				FE74920F2746240500AB8995 /* Modify.storyboard in Resources */,
 				FE7492072744E61400AB8995 /* Album.storyboard in Resources */,
 				FECA36F62742D03100C01FF8 /* Assets.xcassets in Resources */,
@@ -222,6 +232,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */,
+				FE579AE527478461000C258E /* AlbumCollectionViewCell.swift in Sources */,
+				FE579AE82747E865000C258E /* SettingTableViewCell.swift in Sources */,
 				FECA36F12742D02E00C01FF8 /* ViewController.swift in Sources */,
 				FE7492132746242A00AB8995 /* PickingViewController.swift in Sources */,
 				FE7492112746241E00AB8995 /* AddViewController.swift in Sources */,

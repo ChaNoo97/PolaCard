@@ -13,11 +13,11 @@ class MainCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var wordingLabel: UILabel!
 	@IBOutlet weak var imageDateLabel: UILabel!
 	
-	static let identfier = "MainCollectionViewCell"
+	static let identifier = "MainCollectionViewCell"
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
 }

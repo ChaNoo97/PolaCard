@@ -11,21 +11,50 @@ class LookViewController: UIViewController {
 	
 	static let identifier = "LookViewController"
 	
-    override func viewDidLoad() {
+	@IBOutlet weak var lookCollectionView: UICollectionView!
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		lookCollectionView.dataSource = self
+		lookCollectionView.delegate = self
+		let nibName = UINib(nibName: MainCollectionViewCell.identifier, bundle: nil)
+		lookCollectionView.register(nibName, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+		lookCollectionView.isPagingEnabled = true
+		
+		let layout = UICollectionViewFlowLayout()
+		let spacing: CGFloat = 10
+		let width = UIScreen.main.bounds.width - (2*spacing)
+		let height = UIScreen.main.bounds.height * 0.75
+		layout.itemSize = CGSize(width: width, height: height)
+		layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+		layout.minimumLineSpacing = 2*spacing
+		
+		layout.scrollDirection = .horizontal
+		
+		lookCollectionView.collectionViewLayout = layout
+       
     }
     
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+extension LookViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return 5
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		guard let cell = lookCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else {return UICollectionViewCell()}
+		cell.layer.borderWidth = 3
+	
+		cell.backgroundColor = .lightGray
+		cell.mainImageView.backgroundColor = .white
+		cell.mainImageView.image = UIImage(systemName: "star")
+		
+		cell.wordingLabel.backgroundColor = .orange
+		cell.imageDateLabel.backgroundColor = .cyan
+		return cell
+	}
+	
+	
 }
