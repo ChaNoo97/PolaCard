@@ -11,6 +11,7 @@
 		FE579AE527478461000C258E /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AE327478461000C258E /* AlbumCollectionViewCell.swift */; };
 		FE579AE627478461000C258E /* AlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE579AE427478461000C258E /* AlbumCollectionViewCell.xib */; };
 		FE579AE82747E865000C258E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AE72747E865000C258E /* SettingTableViewCell.swift */; };
+		FE579AEC27493FF1000C258E /* Kyobo Handwriting 2019.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE579AEB27493FF1000C258E /* Kyobo Handwriting 2019.otf */; };
 		FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491F82744DCE600AB8995 /* AlbumViewController.swift */; };
 		FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491FE2744DDF200AB8995 /* MainViewController.swift */; };
 		FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7492002744DE0700AB8995 /* SettingViewController.swift */; };
@@ -40,6 +41,7 @@
 		FE579AE327478461000C258E /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE579AE427478461000C258E /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
 		FE579AE72747E865000C258E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		FE579AEB27493FF1000C258E /* Kyobo Handwriting 2019.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kyobo Handwriting 2019.otf"; sourceTree = "<group>"; };
 		FE7491F82744DCE600AB8995 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		FE7491FE2744DDF200AB8995 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FE7492002744DE0700AB8995 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE579AE927481ED6000C258E /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		FE579AEA27493F79000C258E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				FE579AEB27493FF1000C258E /* Kyobo Handwriting 2019.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		FE7491F72744DCD200AB8995 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +138,8 @@
 		FECA36EB2742D02E00C01FF8 /* PhotoCard */ = {
 			isa = PBXGroup;
 			children = (
+				FE579AEA27493F79000C258E /* Font */,
+				FE579AE927481ED6000C258E /* Realm */,
 				FE74921827462E8300AB8995 /* CollectionViewCell */,
 				FE7491F72744DCD200AB8995 /* ViewController */,
 				FECA370027438CFC00C01FF8 /* StroyBoard */,
@@ -214,6 +233,7 @@
 				FE74920D274623F700AB8995 /* Look.storyboard in Resources */,
 				FE749209274623DE00AB8995 /* Add.storyboard in Resources */,
 				FE579AE627478461000C258E /* AlbumCollectionViewCell.xib in Resources */,
+				FE579AEC27493FF1000C258E /* Kyobo Handwriting 2019.otf in Resources */,
 				FE74920F2746240500AB8995 /* Modify.storyboard in Resources */,
 				FE7492072744E61400AB8995 /* Album.storyboard in Resources */,
 				FECA36F62742D03100C01FF8 /* Assets.xcassets in Resources */,

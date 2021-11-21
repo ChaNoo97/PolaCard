@@ -13,6 +13,7 @@ class MainViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		// KyoboHandwriting2019
 		navigationItem.title = "Main"
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self

@@ -11,13 +11,15 @@ class AddViewController: UIViewController {
 	
 	static let identifier = "AddViewController"
 	
+	let picker = UIImagePickerController()
+	
 	@IBOutlet weak var backButton: UIButton!
 	@IBOutlet weak var libraryButton: UIButton!
 	@IBOutlet weak var cameraButton: UIButton!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
+		picker.delegate = self
         
     }
     
@@ -27,12 +29,23 @@ class AddViewController: UIViewController {
 	}
 	@IBAction func libaryButtonClicked(_ sender: UIButton) {
 		print(#function)
+		picker.sourceType = .photoLibrary
+		present(picker, animated: true, completion: nil)
 	}
 	@IBAction func caremaButtonClicked(_ sender: UIButton) {
 		print(#function)
+		picker.sourceType = .camera
+		present(picker, animated: true, completion: nil)
 	}
 	
 	
 }
 
+extension AddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+		<#code#>
+	}
+	
+}
 
