@@ -12,6 +12,8 @@
 		FE579AE627478461000C258E /* AlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE579AE427478461000C258E /* AlbumCollectionViewCell.xib */; };
 		FE579AE82747E865000C258E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AE72747E865000C258E /* SettingTableViewCell.swift */; };
 		FE579AEC27493FF1000C258E /* Kyobo Handwriting 2019.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE579AEB27493FF1000C258E /* Kyobo Handwriting 2019.otf */; };
+		FE579AF3274B7CEC000C258E /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AF1274B7CEB000C258E /* FilterCollectionViewCell.swift */; };
+		FE579AF4274B7CEC000C258E /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE579AF2274B7CEB000C258E /* FilterCollectionViewCell.xib */; };
 		FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491F82744DCE600AB8995 /* AlbumViewController.swift */; };
 		FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491FE2744DDF200AB8995 /* MainViewController.swift */; };
 		FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7492002744DE0700AB8995 /* SettingViewController.swift */; };
@@ -30,7 +32,6 @@
 		FE74921C2746384800AB8995 /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE74921A2746384800AB8995 /* MainCollectionViewCell.xib */; };
 		FECA36ED2742D02E00C01FF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA36EC2742D02E00C01FF8 /* AppDelegate.swift */; };
 		FECA36EF2742D02E00C01FF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA36EE2742D02E00C01FF8 /* SceneDelegate.swift */; };
-		FECA36F12742D02E00C01FF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECA36F02742D02E00C01FF8 /* ViewController.swift */; };
 		FECA36F42742D02E00C01FF8 /* Base.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECA36F22742D02E00C01FF8 /* Base.storyboard */; };
 		FECA36F62742D03100C01FF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECA36F52742D03100C01FF8 /* Assets.xcassets */; };
 		FECA36F92742D03100C01FF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FECA36F72742D03100C01FF8 /* LaunchScreen.storyboard */; };
@@ -42,6 +43,8 @@
 		FE579AE427478461000C258E /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
 		FE579AE72747E865000C258E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		FE579AEB27493FF1000C258E /* Kyobo Handwriting 2019.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kyobo Handwriting 2019.otf"; sourceTree = "<group>"; };
+		FE579AF1274B7CEB000C258E /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE579AF2274B7CEB000C258E /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
 		FE7491F82744DCE600AB8995 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		FE7491FE2744DDF200AB8995 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FE7492002744DE0700AB8995 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -61,7 +64,6 @@
 		FECA36E92742D02E00C01FF8 /* PhotoCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECA36EC2742D02E00C01FF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FECA36EE2742D02E00C01FF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FECA36F02742D02E00C01FF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FECA36F32742D02E00C01FF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Base.storyboard; sourceTree = "<group>"; };
 		FECA36F52742D03100C01FF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FECA36F82742D03100C01FF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,6 +117,8 @@
 				FE74921A2746384800AB8995 /* MainCollectionViewCell.xib */,
 				FE579AE327478461000C258E /* AlbumCollectionViewCell.swift */,
 				FE579AE427478461000C258E /* AlbumCollectionViewCell.xib */,
+				FE579AF1274B7CEB000C258E /* FilterCollectionViewCell.swift */,
+				FE579AF2274B7CEB000C258E /* FilterCollectionViewCell.xib */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -145,7 +149,6 @@
 				FECA370027438CFC00C01FF8 /* StroyBoard */,
 				FECA36EC2742D02E00C01FF8 /* AppDelegate.swift */,
 				FECA36EE2742D02E00C01FF8 /* SceneDelegate.swift */,
-				FECA36F02742D02E00C01FF8 /* ViewController.swift */,
 				FECA36F52742D03100C01FF8 /* Assets.xcassets */,
 				FECA36F72742D03100C01FF8 /* LaunchScreen.storyboard */,
 				FECA36FA2742D03100C01FF8 /* Info.plist */,
@@ -238,6 +241,7 @@
 				FE7492072744E61400AB8995 /* Album.storyboard in Resources */,
 				FECA36F62742D03100C01FF8 /* Assets.xcassets in Resources */,
 				FECA36F42742D02E00C01FF8 /* Base.storyboard in Resources */,
+				FE579AF4274B7CEC000C258E /* FilterCollectionViewCell.xib in Resources */,
 				FE74921C2746384800AB8995 /* MainCollectionViewCell.xib in Resources */,
 				FE74920B274623EE00AB8995 /* Picking.storyboard in Resources */,
 				FE7492032744E5FF00AB8995 /* Setting.storyboard in Resources */,
@@ -254,10 +258,10 @@
 				FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */,
 				FE579AE527478461000C258E /* AlbumCollectionViewCell.swift in Sources */,
 				FE579AE82747E865000C258E /* SettingTableViewCell.swift in Sources */,
-				FECA36F12742D02E00C01FF8 /* ViewController.swift in Sources */,
 				FE7492132746242A00AB8995 /* PickingViewController.swift in Sources */,
 				FE7492112746241E00AB8995 /* AddViewController.swift in Sources */,
 				FECA36ED2742D02E00C01FF8 /* AppDelegate.swift in Sources */,
+				FE579AF3274B7CEC000C258E /* FilterCollectionViewCell.swift in Sources */,
 				FECA36EF2742D02E00C01FF8 /* SceneDelegate.swift in Sources */,
 				FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */,
 				FE74921B2746384800AB8995 /* MainCollectionViewCell.swift in Sources */,
