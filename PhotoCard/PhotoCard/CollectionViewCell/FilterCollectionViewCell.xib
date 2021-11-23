@@ -20,17 +20,30 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NGh-Oz-IHx">
                         <rect key="frame" x="0.0" y="0.0" width="102" height="75"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYj-Pc-5S5">
+                        <rect key="frame" x="0.0" y="75" width="102" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="mBl-gz-4pO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="NGh-Oz-IHx" secondAttribute="bottom" constant="30" id="1fc-ki-45D"/>
-                <constraint firstAttribute="trailing" secondItem="NGh-Oz-IHx" secondAttribute="trailing" id="GEY-dq-MUK"/>
-                <constraint firstItem="NGh-Oz-IHx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HNt-kH-ott"/>
-                <constraint firstItem="NGh-Oz-IHx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eOB-uc-1Ed"/>
+                <constraint firstItem="NGh-Oz-IHx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="0My-Uq-OOl"/>
+                <constraint firstItem="KYj-Pc-5S5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3sv-we-DTL"/>
+                <constraint firstAttribute="bottom" secondItem="KYj-Pc-5S5" secondAttribute="bottom" id="JU3-CF-zKe"/>
+                <constraint firstAttribute="trailing" secondItem="NGh-Oz-IHx" secondAttribute="trailing" id="MRZ-tk-q8B"/>
+                <constraint firstItem="NGh-Oz-IHx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UsL-RB-t33"/>
+                <constraint firstItem="KYj-Pc-5S5" firstAttribute="top" secondItem="NGh-Oz-IHx" secondAttribute="bottom" id="p89-pc-Wl9"/>
+                <constraint firstAttribute="trailing" secondItem="KYj-Pc-5S5" secondAttribute="trailing" id="qm6-nq-jpY"/>
             </constraints>
             <size key="customSize" width="102" height="105"/>
             <connections>
+                <outlet property="filterName" destination="KYj-Pc-5S5" id="KuL-i2-Wf2"/>
                 <outlet property="filteredImage" destination="NGh-Oz-IHx" id="Dlh-6k-Ic9"/>
             </connections>
             <point key="canvasLocation" x="169.56521739130437" y="85.379464285714278"/>

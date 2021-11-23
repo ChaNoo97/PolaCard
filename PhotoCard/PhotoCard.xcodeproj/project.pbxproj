@@ -14,6 +14,8 @@
 		FE579AEC27493FF1000C258E /* Kyobo Handwriting 2019.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE579AEB27493FF1000C258E /* Kyobo Handwriting 2019.otf */; };
 		FE579AF3274B7CEC000C258E /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AF1274B7CEB000C258E /* FilterCollectionViewCell.swift */; };
 		FE579AF4274B7CEC000C258E /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE579AF2274B7CEB000C258E /* FilterCollectionViewCell.xib */; };
+		FE579AF6274D3274000C258E /* FilterCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AF5274D3274000C258E /* FilterCollectionViewLayout.swift */; };
+		FE579AF8274D5964000C258E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AF7274D5964000C258E /* Filter.swift */; };
 		FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491F82744DCE600AB8995 /* AlbumViewController.swift */; };
 		FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491FE2744DDF200AB8995 /* MainViewController.swift */; };
 		FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7492002744DE0700AB8995 /* SettingViewController.swift */; };
@@ -45,6 +47,8 @@
 		FE579AEB27493FF1000C258E /* Kyobo Handwriting 2019.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kyobo Handwriting 2019.otf"; sourceTree = "<group>"; };
 		FE579AF1274B7CEB000C258E /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE579AF2274B7CEB000C258E /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		FE579AF5274D3274000C258E /* FilterCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewLayout.swift; sourceTree = "<group>"; };
+		FE579AF7274D5964000C258E /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		FE7491F82744DCE600AB8995 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		FE7491FE2744DDF200AB8995 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FE7492002744DE0700AB8995 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				FECA36F52742D03100C01FF8 /* Assets.xcassets */,
 				FECA36F72742D03100C01FF8 /* LaunchScreen.storyboard */,
 				FECA36FA2742D03100C01FF8 /* Info.plist */,
+				FE579AF5274D3274000C258E /* FilterCollectionViewLayout.swift */,
+				FE579AF7274D5964000C258E /* Filter.swift */,
 				FE579AE72747E865000C258E /* SettingTableViewCell.swift */,
 				FE579AD927464B1B000C258E /* Main + Extension.swift */,
 			);
@@ -268,6 +274,8 @@
 				FE7492152746243D00AB8995 /* LookViewController.swift in Sources */,
 				FE7492172746244800AB8995 /* ModifyViewController.swift in Sources */,
 				FE579ADA27464B1B000C258E /* Main + Extension.swift in Sources */,
+				FE579AF8274D5964000C258E /* Filter.swift in Sources */,
+				FE579AF6274D3274000C258E /* FilterCollectionViewLayout.swift in Sources */,
 				FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

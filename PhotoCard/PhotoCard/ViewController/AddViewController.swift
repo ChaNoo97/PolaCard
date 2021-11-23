@@ -11,6 +11,7 @@ class AddViewController: UIViewController {
 	
 	static let identifier = "AddViewController"
 	
+	let ciFilters = ciFilterNames()
 	let picker = UIImagePickerController()
 	var value: UIImage?
 	var cifilterNames: Array<String> = [
@@ -22,38 +23,33 @@ class AddViewController: UIViewController {
 	@IBOutlet weak var libraryButton: UIButton!
 	@IBOutlet weak var cameraButton: UIButton!
 
-	@IBOutlet weak var filterView: UICollectionView!
 	@IBOutlet weak var filterCollectionView: UICollectionView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		filterCollectionView.dataSource = self
 		filterCollectionView.delegate = self
+		filterCollectionView.dataSource = self
 		let nibName = UINib(nibName: FilterCollectionViewCell.identifier, bundle: nil)
 		filterCollectionView.register(nibName, forCellWithReuseIdentifier: FilterCollectionViewCell.identifier)
-		filterCollectionView.isPagingEnabled = true
 		
 		picker.delegate = self
 		picker.allowsEditing = false
         
+		//삭제할 코드
 		newAddedImage.image = UIImage(systemName: "star")
 		newAddedImage.layer.borderWidth = 1
 		
 		let layout = UICollectionViewFlowLayout()
+		
 		let spacing: CGFloat = 10
-		let width = filterView.bounds.size.width - (2*spacing)
-		let height = filterView.bounds.size.height
-		layout.itemSize = CGSize(width: width, height: height)
+		let height = filterCollectionView.bounds.height
+		layout.itemSize = CGSize(width: height, height: height)
 		layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
 		layout.minimumLineSpacing = 2*spacing
 		
 		layout.scrollDirection = .horizontal
 		
 		filterCollectionView.collectionViewLayout = layout
-		
-		print(type(of: (filterView.bounds.size.width)))
-		print(filterView.bounds.size.height)
     }
     
 
@@ -79,49 +75,38 @@ class AddViewController: UIViewController {
 extension AddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-		guard let imageURL = info[.imageURL] as? URL, let originalCIImage = CIImage(contentsOf: imageURL) else { return }
-		let context = CIContext()
+		guard let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+		value = originalImage
+//		let context = CIContext()
+//		let filterImage = self.filter(originalCIImage, filterName: "CIPhotoEffectTransfer")!
+//		let cgImage = context.createCGImage(filterImage, from: filterImage.extent)!
+//		let image = UIImage(cgImage: cgImage, scale: originalImage.scale, orientation: originalImage.imageOrientation)
+//		value = image
 		
-		let sepiaCIImage = self.sepiaFilter(originalCIImage, intensity: 0.8)!
-		
-		let cgImage = context.createCGImage(sepiaCIImage, from: sepiaCIImage.extent)!
-		
-		let image = UIImage(cgImage: cgImage)
-		value = image
 		picker.dismiss(animated: true) {
-			self.newAddedImage.image = image
+			self.newAddedImage.image = originalImage
 			self.filterCollectionView.reloadData()
 		}
 	}
 	
-	func sepiaFilter(_ input: CIImage, intensity: Double) -> CIImage? {
-		let sepiaFilter = CIFilter(name: "CISepiaTone")
-		sepiaFilter?.setValue(input, forKey: kCIInputImageKey)
-		sepiaFilter?.setValue(intensity, forKey: kCIInputIntensityKey)
-		return sepiaFilter?.outputImage
+	func filter(_ input: CIImage, filterName: String) -> CIImage? {
+		let filter = CIFilter(name: filterName)
+		filter?.setValue(input, forKey: kCIInputImageKey)
+		return filter?.outputImage
 	}
+	
+	func makeFilteredImage(filterName: String) -> UIImage? {
+		if let rawImage = value {
+		let originalCIImage = CIImage(image: rawImage)
+		let context = CIContext(options: nil)
+		let filterImage = self.filter(originalCIImage!, filterName: filterName)!
+		let cgImage = context.createCGImage(filterImage, from: filterImage.extent)!
+		let image = UIImage(cgImage: cgImage, scale: value!.scale, orientation: value!.imageOrientation)
+		return image
+		}
+		return UIImage(systemName: "star")
+	}
+
 }
 
-extension AddViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 10
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		guard let cell = filterCollectionView.dequeueReusableCell(withReuseIdentifier: FilterCollectionViewCell.identifier, for: indexPath) as? FilterCollectionViewCell else { return UICollectionViewCell() }
-		
-		cell.backgroundColor = .orange
-		cell.filteredImage.image = value
-	
-		return cell
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let cell = filterCollectionView.cellForItem(at: indexPath) as! FilterCollectionViewCell
-		
-		newAddedImage.image = cell.filteredImage.image
-		
-	}
-	
-}
 
