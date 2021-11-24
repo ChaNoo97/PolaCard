@@ -15,7 +15,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	let picker = UIImagePickerController()
 	var value: UIImage? {
 		didSet {
-			imageDateLabel.text = "텍스트다 이말이야"
 			filterCollectionView.isHidden = false
 			if picker.sourceType == .camera {
 				let nowDate = Date()
@@ -75,7 +74,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         
 		//삭제할 코드
 		newAddedImage.image = UIImage(systemName: "star")
-		newAddedImage.layer.borderWidth = 1
 		
 		let layout = UICollectionViewFlowLayout()
 		
@@ -140,8 +138,8 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
 		if picker.sourceType == .photoLibrary {
 			guard let selectPhotoImageURL = info[.imageURL] as? URL else { return }
 			imageURL = selectPhotoImageURL
+			print(imageURL!)
 		}
-		print(imageURL)
 		value = originalImage
 //		let context = CIContext()
 //		let filterImage = self.filter(originalCIImage, filterName: "CIPhotoEffectTransfer")!

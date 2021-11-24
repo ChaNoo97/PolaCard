@@ -29,9 +29,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZF-NC-rJA">
-                                        <rect key="frame" x="343" y="0.0" width="24" height="44"/>
+                                        <rect key="frame" x="300" y="0.0" width="67" height="44"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title=""/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                         <connections>
                                             <action selector="saveButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="RpV-Nb-Cj3"/>
                                         </connections>
