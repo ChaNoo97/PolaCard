@@ -42,6 +42,7 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 		newAddedImage.image = cell.filteredImage.image
 	}
 	
+	
 }
 
 
