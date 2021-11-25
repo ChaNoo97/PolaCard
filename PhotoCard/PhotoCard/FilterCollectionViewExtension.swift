@@ -38,7 +38,7 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let cell = filterCollectionView.cellForItem(at: indexPath) as! FilterCollectionViewCell
-		
+		savedImage = cell.filteredImage.image
 		newAddedImage.image = cell.filteredImage.image
 	}
 	

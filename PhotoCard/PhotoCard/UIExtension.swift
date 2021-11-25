@@ -10,6 +10,8 @@ import UIKit
 
 class UIExtension: UIViewController {
 	
+	let handWritingFont20 = UIFont(name: "KyoboHandwriting2019", size: 20)
+	
 	func buttonDesgin(btn: UIButton, tintColor: UIColor, title: String?, systemImageName: String) -> Void {
 		btn.setTitle(title, for: .normal)
 		btn.tintColor = tintColor

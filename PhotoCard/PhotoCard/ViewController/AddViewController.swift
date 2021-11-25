@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddViewController: UIViewController, UITextFieldDelegate {
-	
+	let designHelper = UIExtension()
 	static let identifier = "AddViewController"
+	
+	let localRealm = try! Realm()
+	var tasks: Results<PolaroidCardData>!
 	
 	let ciFilters = ciFilterNames()
 	let picker = UIImagePickerController()
@@ -23,11 +27,13 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 				dateFormatter.locale = Locale(identifier: "ko_KR")
 				let stringDate = dateFormatter.string(from: nowDate)
 				imageDateLabel.text = stringDate
+			} else {
+				imageDateLabel.text = "라이브러리 시간 가져옴"
 			}
 		}
 	}
 	var imageURL: URL?
-	let disignHelper = UIExtension()
+	var savedImage: UIImage?
 	
 	@IBOutlet weak var newAddedImage: UIImageView!
 	@IBOutlet weak var backButton: UIButton!
@@ -42,14 +48,14 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		disignHelper.buttonDesgin(btn: backButton, tintColor: .black, title: "뒤로가기", systemImageName: "chevron.backward")
-		disignHelper.buttonDesgin(btn: libraryButton, tintColor: .black, title: nil, systemImageName: "person.2.crop.square.stack")
-		disignHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 1, cornerRadiusValue: 5, borderColor: .black, backgroundColor: .systemGray5)
-		disignHelper.buttonDesgin(btn: cameraButton, tintColor: .black, title: nil, systemImageName: "camera")
-		disignHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 1, cornerRadiusValue: 5, borderColor: .black, backgroundColor: .systemGray5)
-		disignHelper.addViewSaveButton(btn: saveButton)
+		print("realm", localRealm.configuration.fileURL!)
 		
-		wordingTextField.delegate = self
+		designHelper.buttonDesgin(btn: backButton, tintColor: .black, title: "뒤로가기", systemImageName: "chevron.backward")
+		designHelper.buttonDesgin(btn: libraryButton, tintColor: .black, title: nil, systemImageName: "person.2.crop.square.stack")
+		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 1, cornerRadiusValue: 5, borderColor: .black, backgroundColor: .systemGray5)
+		designHelper.buttonDesgin(btn: cameraButton, tintColor: .black, title: nil, systemImageName: "camera")
+		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 1, cornerRadiusValue: 5, borderColor: .black, backgroundColor: .systemGray5)
+		designHelper.addViewSaveButton(btn: saveButton)
 		
 		polaroidcardView.layer.cornerRadius = 3
 		polaroidcardView.layer.shadowOffset = CGSize(width: 10, height: 2)
@@ -61,8 +67,11 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 		
+		wordingTextField.delegate = self
 		wordingTextField.placeholder = "사진의 경험을 적어보세요"
+		wordingTextField.font = designHelper.handWritingFont20
 		imageDateLabel.text = ""
+		imageDateLabel.font = designHelper.handWritingFont20
 		
 		filterCollectionView.delegate = self
 		filterCollectionView.dataSource = self
@@ -98,17 +107,17 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		wordingTextField.resignFirstResponder()
 		return true
 	}
-
-	@IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
-		view.endEditing(true)
-	}
 	
 	@objc func keyboardWillShow(_ sender: Notification) {
-		self.view.frame.origin.y = -150 // Move view 150 points upward
+		self.view.frame.origin.y = -250 // Move view 150 points upward
 	}
 
 	@objc func keyboardWillHide(_ sender: Notification) {
 		self.view.frame.origin.y = 0 // Move view to original position
+	}
+	
+	@IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
+		view.endEditing(true)
 	}
 
 	@IBAction func backButtonClicked(_ sender: UIButton) {
@@ -116,23 +125,32 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	@IBAction func libraryButtonclicked(_ sender: UIButton) {
-		print(#function)
 		picker.sourceType = .photoLibrary
 		present(picker, animated: true, completion: nil)
 	}
 	
 	@IBAction func caremaButtonClicked(_ sender: UIButton) {
-		print(#function)
 		picker.sourceType = .camera
 		present(picker, animated: true, completion: nil)
 	}
 	
 	@IBAction func saveButtonClicked(_ sender: UIButton) {
 		print(#function)
+		guard let image = newAddedImage.image else { return print("이미지 없음 얼럿")}
+		
+		let task = PolaroidCardData(wordingText: wordingTextField.text, imageDate: imageDateLabel.text!)
+		
+		try! localRealm.write {
+			localRealm.add(task)
+		}
+		
+		saveImageToDocumentDirectory(imageName: "\(task._id).png", image: image)
+		
 	}
 }
 
 extension AddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		guard let originalImage = info[.originalImage] as? UIImage else { return }
 		if picker.sourceType == .photoLibrary {

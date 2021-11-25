@@ -15,11 +15,12 @@
 		FE579AF3274B7CEC000C258E /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AF1274B7CEB000C258E /* FilterCollectionViewCell.swift */; };
 		FE579AF4274B7CEC000C258E /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE579AF2274B7CEB000C258E /* FilterCollectionViewCell.xib */; };
 		FE579AF6274D3274000C258E /* FilterCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AF5274D3274000C258E /* FilterCollectionViewExtension.swift */; };
-		FE579AF8274D5964000C258E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AF7274D5964000C258E /* Filter.swift */; };
+		FE579AF8274D5964000C258E /* PhotoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579AF7274D5964000C258E /* PhotoFilter.swift */; };
 		FE579B1E274DFE6B000C258E /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579B1D274DFE6B000C258E /* RealmModel.swift */; };
 		FE579B20274E04C6000C258E /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579B1F274E04C6000C258E /* UIExtension.swift */; };
 		FE579B23274E0A36000C258E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FE579B22274E0A36000C258E /* Realm */; };
 		FE579B25274E0A36000C258E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE579B24274E0A36000C258E /* RealmSwift */; };
+		FE579B29274F5E88000C258E /* PhotoDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579B28274F5E88000C258E /* PhotoDataExtension.swift */; };
 		FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491F82744DCE600AB8995 /* AlbumViewController.swift */; };
 		FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491FE2744DDF200AB8995 /* MainViewController.swift */; };
 		FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7492002744DE0700AB8995 /* SettingViewController.swift */; };
@@ -52,9 +53,10 @@
 		FE579AF1274B7CEB000C258E /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE579AF2274B7CEB000C258E /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
 		FE579AF5274D3274000C258E /* FilterCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewExtension.swift; sourceTree = "<group>"; };
-		FE579AF7274D5964000C258E /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		FE579AF7274D5964000C258E /* PhotoFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFilter.swift; sourceTree = "<group>"; };
 		FE579B1D274DFE6B000C258E /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		FE579B1F274E04C6000C258E /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		FE579B28274F5E88000C258E /* PhotoDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataExtension.swift; sourceTree = "<group>"; };
 		FE7491F82744DCE600AB8995 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		FE7491FE2744DDF200AB8995 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FE7492002744DE0700AB8995 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -165,8 +167,9 @@
 				FECA36F52742D03100C01FF8 /* Assets.xcassets */,
 				FECA36F72742D03100C01FF8 /* LaunchScreen.storyboard */,
 				FECA36FA2742D03100C01FF8 /* Info.plist */,
+				FE579B28274F5E88000C258E /* PhotoDataExtension.swift */,
 				FE579AF5274D3274000C258E /* FilterCollectionViewExtension.swift */,
-				FE579AF7274D5964000C258E /* Filter.swift */,
+				FE579AF7274D5964000C258E /* PhotoFilter.swift */,
 				FE579AE72747E865000C258E /* SettingTableViewCell.swift */,
 				FE579AD927464B1B000C258E /* MainCollectionViewExtension.swift */,
 				FE579B1F274E04C6000C258E /* UIExtension.swift */,
@@ -284,6 +287,7 @@
 				FE7492132746242A00AB8995 /* PickingViewController.swift in Sources */,
 				FE7492112746241E00AB8995 /* AddViewController.swift in Sources */,
 				FECA36ED2742D02E00C01FF8 /* AppDelegate.swift in Sources */,
+				FE579B29274F5E88000C258E /* PhotoDataExtension.swift in Sources */,
 				FE579AF3274B7CEC000C258E /* FilterCollectionViewCell.swift in Sources */,
 				FECA36EF2742D02E00C01FF8 /* SceneDelegate.swift in Sources */,
 				FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */,
@@ -293,7 +297,7 @@
 				FE579B1E274DFE6B000C258E /* RealmModel.swift in Sources */,
 				FE579B20274E04C6000C258E /* UIExtension.swift in Sources */,
 				FE579ADA27464B1B000C258E /* MainCollectionViewExtension.swift in Sources */,
-				FE579AF8274D5964000C258E /* Filter.swift in Sources */,
+				FE579AF8274D5964000C258E /* PhotoFilter.swift in Sources */,
 				FE579AF6274D3274000C258E /* FilterCollectionViewExtension.swift in Sources */,
 				FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */,
 			);

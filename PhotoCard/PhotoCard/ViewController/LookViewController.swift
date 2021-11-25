@@ -8,7 +8,7 @@
 import UIKit
 
 class LookViewController: UIViewController {
-	
+	let designHelper = UIExtension()
 	static let identifier = "LookViewController"
 	
 	@IBOutlet weak var lookCollectionView: UICollectionView!
@@ -53,7 +53,7 @@ extension LookViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		
 		cell.wordingLabel.backgroundColor = .orange
 		//폰트 적용 코드
-		cell.wordingLabel.font = UIFont(name: "KyoboHandwriting2019", size: 20)
+		cell.wordingLabel.font = designHelper.handWritingFont20
 		cell.wordingLabel.text = "오늘은 야구장에서 별 본날"
 		cell.imageDateLabel.backgroundColor = .cyan
 		return cell

@@ -6,14 +6,26 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
+	let designHelper = UIExtension()
+	
+	let localRealm = try! Realm()
+	var tasks: Results<PolaroidCardData>!
 	
 	@IBOutlet weak var mainCollectionView: UICollectionView!
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		mainCollectionView.reloadData()
+	}
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		// KyoboHandwriting2019
+		
+		tasks = localRealm.objects(PolaroidCardData.self)
+		
 		navigationItem.title = "Main"
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self
