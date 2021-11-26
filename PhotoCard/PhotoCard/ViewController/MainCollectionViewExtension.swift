@@ -25,19 +25,22 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		cell.wordingLabel.font = designHelper.handWritingFont20
 		
 		cell.layer.borderWidth = 3
-		cell.backgroundColor = .lightGray
 		
-		cell.wordingLabel.backgroundColor = .orange
 		cell.wordingLabel.text = row.wordingText
 		
-		cell.mainImageView.backgroundColor = .white
 		
+        filterNum = row.filterNum
+        let imageInCell = self.loadImageFromDocumentDirectory(imageName: "\(row._id)")
+        
 		DispatchQueue.main.async {
-			let imageInCell = self.loadImageFromDocumentDirectory(imageName: "\(row._id)")
-			cell.mainImageView.image = imageInCell
+            if self.filterNum == 0 {
+                cell.mainImageView.image = imageInCell
+            } else {
+            self.filteredImageInCell = self.makeFilterImage(userSelectImage: imageInCell!, filterName: self.filters.filter[self.filterNum!-1])!
+                cell.mainImageView.image = self.filteredImageInCell
+            }
 		}
 	
-		cell.imageDateLabel.backgroundColor = .cyan
 		cell.imageDateLabel.text = row.imageDate
 		return cell
 	}

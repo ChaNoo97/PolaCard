@@ -30,7 +30,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	var imageURL: URL?
 	var savedImage: UIImage?
-	
+    var userFilterNum: Int = 0
+    var imageWidth: CGFloat = 0
+    
 	@IBOutlet weak var newAddedImage: UIImageView!
 	@IBOutlet weak var backButton: UIButton!
 	@IBOutlet weak var libraryButton: UIButton!
@@ -79,7 +81,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         
 		//삭제할 코드
 		newAddedImage.image = UIImage(systemName: "star")
-		
+        imageWidth = newAddedImage.bounds.width
+       
 		let layout = UICollectionViewFlowLayout()
 		
 		let spacing: CGFloat = 10
@@ -132,15 +135,15 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	
 	@IBAction func saveButtonClicked(_ sender: UIButton) {
 		print(#function)
-		guard let image = newAddedImage.image else { return print("이미지 없음 얼럿")}
+		guard let image = value else { return print("이미지 없음 얼럿")}
 		
-		let task = PolaroidCardData(wordingText: wordingTextField.text, imageDate: imageDateLabel.text!)
+		let task = PolaroidCardData(wordingText: wordingTextField.text, imageDate: imageDateLabel.text!, filterNum: userFilterNum)
 		
 		try! localRealm.write {
 			localRealm.add(task)
 		}
 		
-		saveImageToDocumentDirectory(imageName: "\(task._id).png", image: image)
+        saveImageToDocumentDirectory(imageName: "\(task._id).png", image: image)
 		
 	}
 }
@@ -149,31 +152,28 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		guard let originalImage = info[.originalImage] as? UIImage else { return }
-		value = originalImage
+        //오리지날 이미지 -> 다운 이미지
+        print("오리지널 스케일",originalImage.size.width)
+        let downImage = resizeImage(image: originalImage, newWidth: originalImage.size.width, newHeight: originalImage.size.height)
+        //벨류 = 다운이미지
+		value = downImage
 		picker.dismiss(animated: true) {
-			self.newAddedImage.image = originalImage
+			self.newAddedImage.image = downImage
 			self.filterCollectionView.reloadData()
 		}
 	}
-	
-	func filter(_ input: CIImage, filterName: String) -> CIImage? {
-		let filter = CIFilter(name: filterName)
-		filter?.setValue(input, forKey: kCIInputImageKey)
-		return filter?.outputImage
-	}
-	
-	func makeFilteredImage(filterName: String) -> UIImage? {
-		if let rawImage = value {
-		let originalCIImage = CIImage(image: rawImage)
-		let context = CIContext(options: nil)
-		let filterImage = self.filter(originalCIImage!, filterName: filterName)!
-		let cgImage = context.createCGImage(filterImage, from: filterImage.extent)!
-		let image = UIImage(cgImage: cgImage, scale: value!.scale, orientation: value!.imageOrientation)
-		return image
-		}
-		return UIImage(systemName: "star")
-	}
-
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
+        let newWidth = newWidth/2
+        let newHeight = newHeight/2
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
+    
 }
 
 

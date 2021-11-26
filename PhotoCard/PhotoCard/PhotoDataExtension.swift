@@ -25,8 +25,7 @@ extension UIViewController {
 		}
 			
 		let imageURL = filePath.appendingPathComponent(imageName)
-		
-		guard let data = image.jpegData(compressionQuality: 1) else { return }
+        guard let data = image.jpegData(compressionQuality: 0.8) else { return }
 		
 		if FileManager.default.fileExists(atPath: imageURL.path) {
 			do {
@@ -57,7 +56,35 @@ extension UIViewController {
 		}
 		return nil
 	}
+    
+    
+    func filter(_ input: CIImage, filterName: String) -> CIImage? {
+        let filter = CIFilter(name: filterName)
+        filter?.setValue(input, forKey: kCIInputImageKey)
+        return filter?.outputImage
+    }
+    
+    func makeFilterImage(userSelectImage: UIImage, filterName: String) -> UIImage? {
+        let context = CIContext(options: nil)
+        let originalCIImage = CIImage(image: userSelectImage)
+        let filterImage = self.filter(originalCIImage!, filterName: filterName)!
+        let cgImage = context.createCGImage(filterImage, from: filterImage.extent)!
+        let image = UIImage(cgImage: cgImage, scale: userSelectImage.scale, orientation: userSelectImage.imageOrientation)
+        return image
+    }
+    
+//    func imageDownSize(imageURL: URL, pointSize: CGSize, scale: CGFloat) -> UIImage {
+//        let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+//        let imageSource = CGImageSourceCreateWithURL(imageURL as CFURL, imageSourceOptions)!
+//        let maxDimensionInPixels = max(pointSize.width, pointSize.height) * scale
+//        let downsampleOptions = [kCGImageSourceCreateThumbnailFromImageAlways: true,
+//                                kCGImageSourceShouldCacheImmediately: true,
+//                                kCGImageSourceCreateThumbnailWithTransform: true,
+//                                kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels] as CFDictionary
+//        let downsampledImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downsampleOptions)!
+//        return UIImage(cgImage: downsampledImage)
+//    }
 	
 }
-	
+
 

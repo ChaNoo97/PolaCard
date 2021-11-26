@@ -26,7 +26,7 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 			cell.filterName.sizeToFit()
 		} else {
 			cell.layer.borderColor = UIColor.black.cgColor
-			cell.filteredImage.image = makeFilteredImage(filterName: ciFilters.filter[indexPath.row-1])
+            cell.filteredImage.image = makeFilterImage(userSelectImage: (value ?? UIImage(systemName: "star"))!, filterName: ciFilters.filter[indexPath.row-1])
 			cell.filterName.text = ciFilters.filter[indexPath.row-1]
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
@@ -40,6 +40,7 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 		let cell = filterCollectionView.cellForItem(at: indexPath) as! FilterCollectionViewCell
 		savedImage = cell.filteredImage.image
 		newAddedImage.image = cell.filteredImage.image
+        userFilterNum = indexPath.row
 	}
 	
 	

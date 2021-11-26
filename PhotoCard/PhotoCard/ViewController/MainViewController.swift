@@ -10,10 +10,11 @@ import RealmSwift
 
 class MainViewController: UIViewController {
 	let designHelper = UIExtension()
-	
+	let filters = ciFilterNames()
 	let localRealm = try! Realm()
 	var tasks: Results<PolaroidCardData>!
-	
+    var filteredImageInCell: UIImage?
+    var filterNum: Int?
 	@IBOutlet weak var mainCollectionView: UICollectionView!
 	
 	override func viewWillAppear(_ animated: Bool) {
