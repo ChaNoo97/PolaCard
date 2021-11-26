@@ -31,10 +31,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		cell.wordingLabel.text = row.wordingText
 		
 		cell.mainImageView.backgroundColor = .white
-		let imageInCell = loadImageFromDocumentDirectory(imageName: "\(row._id)")
-		cell.mainImageView.image = imageInCell
 		
-		
+		DispatchQueue.main.async {
+			let imageInCell = self.loadImageFromDocumentDirectory(imageName: "\(row._id)")
+			cell.mainImageView.image = imageInCell
+		}
+	
 		cell.imageDateLabel.backgroundColor = .cyan
 		cell.imageDateLabel.text = row.imageDate
 		return cell

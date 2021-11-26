@@ -116,8 +116,10 @@
 			children = (
 				FE7491F82744DCE600AB8995 /* AlbumViewController.swift */,
 				FE7491FE2744DDF200AB8995 /* MainViewController.swift */,
+				FE579AD927464B1B000C258E /* MainCollectionViewExtension.swift */,
 				FE7492002744DE0700AB8995 /* SettingViewController.swift */,
 				FE7492102746241E00AB8995 /* AddViewController.swift */,
+				FE579AF5274D3274000C258E /* FilterCollectionViewExtension.swift */,
 				FE7492122746242A00AB8995 /* PickingViewController.swift */,
 				FE7492142746243D00AB8995 /* LookViewController.swift */,
 				FE7492162746244800AB8995 /* ModifyViewController.swift */,
@@ -168,10 +170,8 @@
 				FECA36F72742D03100C01FF8 /* LaunchScreen.storyboard */,
 				FECA36FA2742D03100C01FF8 /* Info.plist */,
 				FE579B28274F5E88000C258E /* PhotoDataExtension.swift */,
-				FE579AF5274D3274000C258E /* FilterCollectionViewExtension.swift */,
 				FE579AF7274D5964000C258E /* PhotoFilter.swift */,
 				FE579AE72747E865000C258E /* SettingTableViewCell.swift */,
-				FE579AD927464B1B000C258E /* MainCollectionViewExtension.swift */,
 				FE579B1F274E04C6000C258E /* UIExtension.swift */,
 			);
 			path = PhotoCard;

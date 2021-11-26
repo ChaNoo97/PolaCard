@@ -25,7 +25,7 @@ class PickingViewController: UIViewController {
 		let layout = UICollectionViewFlowLayout()
 		let spacing: CGFloat = 10
 		let width = UIScreen.main.bounds.width - (2*spacing)
-		let height = UIScreen.main.bounds.height * 0.85
+		let height = UIScreen.main.bounds.height * 0.8
 		layout.itemSize = CGSize(width: width, height: height)
 		layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
 		layout.minimumLineSpacing = 2*spacing

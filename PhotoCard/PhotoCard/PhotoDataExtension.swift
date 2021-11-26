@@ -26,7 +26,7 @@ extension UIViewController {
 			
 		let imageURL = filePath.appendingPathComponent(imageName)
 		
-		guard let data = image.pngData() else { return }
+		guard let data = image.jpegData(compressionQuality: 1) else { return }
 		
 		if FileManager.default.fileExists(atPath: imageURL.path) {
 			do {
@@ -53,13 +53,11 @@ extension UIViewController {
 		
 		if let directoryPath = path.first {
 			let imageURL = URL(fileURLWithPath:  directoryPath).appendingPathComponent("Image").appendingPathComponent(imageName)
-			let loadUIImage = UIImage(contentsOfFile: imageURL.path)
-			if let data = loadUIImage?.pngData() {
-				return UIImage(data: data)
-			}
+			return UIImage(contentsOfFile: imageURL.path)
 		}
 		return nil
 	}
+	
 }
 	
 

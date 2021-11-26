@@ -8,9 +8,11 @@
 import Foundation
 
 struct ciFilterNames {
+	
 	let filter: [String] = [
 		"CISepiaTone",
 		"CIPhotoEffectTransfer"
 	]
+	
 	
 }

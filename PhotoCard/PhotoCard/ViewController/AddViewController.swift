@@ -20,16 +20,12 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	var value: UIImage? {
 		didSet {
 			filterCollectionView.isHidden = false
-			if picker.sourceType == .camera {
-				let nowDate = Date()
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "yyyy.MM.dd"
-				dateFormatter.locale = Locale(identifier: "ko_KR")
-				let stringDate = dateFormatter.string(from: nowDate)
-				imageDateLabel.text = stringDate
-			} else {
-				imageDateLabel.text = "라이브러리 시간 가져옴"
-			}
+			let nowDate = Date()
+			let dateFormatter = DateFormatter()
+			dateFormatter.dateFormat = "yyyy.MM.dd"
+			dateFormatter.locale = Locale(identifier: "ko_KR")
+			let stringDate = dateFormatter.string(from: nowDate)
+			imageDateLabel.text = stringDate
 		}
 	}
 	var imageURL: URL?
@@ -153,17 +149,7 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		guard let originalImage = info[.originalImage] as? UIImage else { return }
-		if picker.sourceType == .photoLibrary {
-			guard let selectPhotoImageURL = info[.imageURL] as? URL else { return }
-			imageURL = selectPhotoImageURL
-			print(imageURL!)
-		}
 		value = originalImage
-//		let context = CIContext()
-//		let filterImage = self.filter(originalCIImage, filterName: "CIPhotoEffectTransfer")!
-//		let cgImage = context.createCGImage(filterImage, from: filterImage.extent)!
-//		let image = UIImage(cgImage: cgImage, scale: originalImage.scale, orientation: originalImage.imageOrientation)
-//		value = image
 		picker.dismiss(animated: true) {
 			self.newAddedImage.image = originalImage
 			self.filterCollectionView.reloadData()
