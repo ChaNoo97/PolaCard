@@ -9,16 +9,19 @@ import UIKit
 import RealmSwift
 
 class MainViewController: UIViewController {
+	
 	let designHelper = UIExtension()
 	let filters = ciFilterNames()
 	let localRealm = try! Realm()
 	var tasks: Results<PolaroidCardData>!
     var filteredImageInCell: UIImage?
     var filterNum: Int?
+	
 	@IBOutlet weak var mainCollectionView: UICollectionView!
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		print(#function)
 		mainCollectionView.reloadData()
 	}
 	
@@ -35,7 +38,7 @@ class MainViewController: UIViewController {
 		mainCollectionView.isPagingEnabled = true
 		
 		let layout = UICollectionViewFlowLayout()
-		let spacing: CGFloat = 10
+		let spacing = designHelper.collectionViewSpacing
 		let width = UIScreen.main.bounds.width - (2*spacing)
 		let height = UIScreen.main.bounds.height * 0.75
 		layout.itemSize = CGSize(width: width, height: height)

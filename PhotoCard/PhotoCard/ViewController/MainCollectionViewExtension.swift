@@ -24,12 +24,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		cell.imageDateLabel.font = designHelper.handWritingFont20
 		cell.wordingLabel.font = designHelper.handWritingFont20
 		
-		cell.layer.borderWidth = 3
-		
 		cell.wordingLabel.text = row.wordingText
 		
-		
         filterNum = row.filterNum
+		
         let imageInCell = self.loadImageFromDocumentDirectory(imageName: "\(row._id)")
         
 		DispatchQueue.main.async {
@@ -42,6 +40,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		}
 	
 		cell.imageDateLabel.text = row.imageDate
+		
+		cell.layer.masksToBounds = false
+		cell.layer.shadowOpacity = 0.3
+		cell.layer.shadowOffset = CGSize(width: 10, height: 2)
+		cell.layer.shadowRadius = designHelper.shadowRadius
+
 		return cell
 	}
 	
@@ -49,8 +53,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		print(indexPath)
 		
 		let sb = UIStoryboard.init(name: "Modify", bundle: nil)
-		let vc = sb.instantiateViewController(withIdentifier: ModifyViewController.identifier)
-		//fullscreen? (11.19)
+		let vc = sb.instantiateViewController(withIdentifier: ModifyViewController.identifier) as! ModifyViewController
+		vc.modifyCard = tasks[indexPath.row]
 		present(vc, animated: true, completion: nil)
 	}
 	

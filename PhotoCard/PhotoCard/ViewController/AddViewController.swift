@@ -29,7 +29,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		}
 	}
 	var imageURL: URL?
-	var savedImage: UIImage?
     var userFilterNum: Int = 0
     var imageWidth: CGFloat = 0
     
@@ -48,17 +47,17 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 		print("realm", localRealm.configuration.fileURL!)
 		
-		designHelper.buttonDesgin(btn: backButton, tintColor: .black, title: "뒤로가기", systemImageName: "chevron.backward")
-		designHelper.buttonDesgin(btn: libraryButton, tintColor: .black, title: nil, systemImageName: "person.2.crop.square.stack")
-		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 1, cornerRadiusValue: 5, borderColor: .black, backgroundColor: .systemGray5)
-		designHelper.buttonDesgin(btn: cameraButton, tintColor: .black, title: nil, systemImageName: "camera")
-		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 1, cornerRadiusValue: 5, borderColor: .black, backgroundColor: .systemGray5)
+		designHelper.buttonDesginHaveImage(btn: backButton, tintColor: .black, title: "뒤로가기", systemImageName: "chevron.backward")
+		designHelper.buttonDesginHaveImage(btn: libraryButton, tintColor: .black, title: nil, systemImageName: "person.2.crop.square.stack")
+		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 1, cornerRadiusValue: designHelper.cornerRadius, borderColor: .black, backgroundColor: .systemGray5)
+		designHelper.buttonDesginHaveImage(btn: cameraButton, tintColor: .black, title: nil, systemImageName: "camera")
+		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 1, cornerRadiusValue: designHelper.cornerRadius, borderColor: .black, backgroundColor: .systemGray5)
 		designHelper.addViewSaveButton(btn: saveButton)
 		
-		polaroidcardView.layer.cornerRadius = 3
+		polaroidcardView.layer.cornerRadius = designHelper.cornerRadius
 		polaroidcardView.layer.shadowOffset = CGSize(width: 10, height: 2)
 		polaroidcardView.layer.shadowOpacity = 0.1
-		polaroidcardView.layer.shadowRadius = 15
+		polaroidcardView.layer.shadowRadius = designHelper.shadowRadius
 		
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -96,7 +95,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 		filterCollectionView.collectionViewLayout = layout
 		
-		filterCollectionView.layer.cornerRadius = 5
+		filterCollectionView.layer.cornerRadius = designHelper.cornerRadius
 		filterCollectionView.backgroundColor = .systemGray5
 		
 		filterCollectionView.isHidden = true

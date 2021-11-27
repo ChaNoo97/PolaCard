@@ -9,6 +9,7 @@ import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
 	
+	@IBOutlet weak var backView: UIView!
 	@IBOutlet weak var mainImageView: UIImageView!
 	@IBOutlet weak var wordingLabel: UILabel!
 	@IBOutlet weak var imageDateLabel: UILabel!

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegate { 
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return ciFilters.filter.count+1
@@ -18,7 +18,9 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 		guard let cell = filterCollectionView.dequeueReusableCell(withReuseIdentifier: FilterCollectionViewCell.identifier, for: indexPath) as? FilterCollectionViewCell else { return UICollectionViewCell() }
 		
 		cell.layer.borderWidth = 1
+		
 		filterCollectionView.selectItem(at: IndexPath.init(row: 0, section: 0), animated: true, scrollPosition: .init())
+		
 		if indexPath.row == 0 {
 			cell.filteredImage.image = value
 			cell.filterName.text = "기본"
@@ -38,7 +40,6 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let cell = filterCollectionView.cellForItem(at: indexPath) as! FilterCollectionViewCell
-		savedImage = cell.filteredImage.image
 		newAddedImage.image = cell.filteredImage.image
         userFilterNum = indexPath.row
 	}

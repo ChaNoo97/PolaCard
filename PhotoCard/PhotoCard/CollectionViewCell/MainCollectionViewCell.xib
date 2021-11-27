@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,17 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="211" height="419"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4Z-s5-cPA">
+                        <rect key="frame" x="10" y="10" width="191" height="399"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ORa-bh-P7L">
-                        <rect key="frame" x="16" y="18" width="179" height="301.5"/>
+                        <rect key="frame" x="16" y="25" width="179" height="306"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92X-pR-rAd">
-                        <rect key="frame" x="16" y="329.5" width="179" height="42"/>
+                        <rect key="frame" x="16" y="341" width="179" height="33.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7d-ZN-qOp">
-                        <rect key="frame" x="105.5" y="381.5" width="89.5" height="25"/>
+                        <rect key="frame" x="105.5" y="384.5" width="89.5" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,21 +41,26 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="ORa-bh-P7L" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="18" id="IbQ-xW-Pye"/>
-                <constraint firstItem="92X-pR-rAd" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.1" id="L7J-1Z-7c0"/>
+                <constraint firstItem="92X-pR-rAd" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.08" id="L7J-1Z-7c0"/>
                 <constraint firstItem="A7d-ZN-qOp" firstAttribute="trailing" secondItem="92X-pR-rAd" secondAttribute="trailing" id="Lo2-wH-f3p"/>
                 <constraint firstItem="ORa-bh-P7L" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="NSg-Rr-cGL"/>
                 <constraint firstItem="92X-pR-rAd" firstAttribute="leading" secondItem="ORa-bh-P7L" secondAttribute="leading" id="TMk-M3-mti"/>
+                <constraint firstAttribute="bottom" secondItem="s4Z-s5-cPA" secondAttribute="bottom" constant="10" id="WXp-Fr-xm3"/>
                 <constraint firstItem="A7d-ZN-qOp" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.06" id="akY-eT-J1e"/>
+                <constraint firstAttribute="trailing" secondItem="s4Z-s5-cPA" secondAttribute="trailing" constant="10" id="guo-uK-mhW"/>
                 <constraint firstItem="92X-pR-rAd" firstAttribute="top" secondItem="ORa-bh-P7L" secondAttribute="bottom" constant="10" id="h5I-rt-WfZ"/>
+                <constraint firstItem="s4Z-s5-cPA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="hI3-ln-aws"/>
                 <constraint firstItem="A7d-ZN-qOp" firstAttribute="top" secondItem="92X-pR-rAd" secondAttribute="bottom" constant="10" id="k5W-n3-FvY"/>
                 <constraint firstItem="A7d-ZN-qOp" firstAttribute="width" secondItem="92X-pR-rAd" secondAttribute="width" multiplier="0.5" id="m9r-82-ywK"/>
                 <constraint firstItem="92X-pR-rAd" firstAttribute="width" secondItem="ORa-bh-P7L" secondAttribute="width" id="nDS-CF-0Xf"/>
+                <constraint firstItem="s4Z-s5-cPA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="nDp-fh-A3p"/>
+                <constraint firstItem="ORa-bh-P7L" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="25" id="qPj-J9-KN4"/>
                 <constraint firstItem="ORa-bh-P7L" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.85" id="uG9-5E-2mK"/>
-                <constraint firstItem="ORa-bh-P7L" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.72" id="znR-Wo-rW3"/>
+                <constraint firstItem="ORa-bh-P7L" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.73" id="znR-Wo-rW3"/>
             </constraints>
             <size key="customSize" width="216" height="418"/>
             <connections>
+                <outlet property="backView" destination="s4Z-s5-cPA" id="BAm-8Q-Ifh"/>
                 <outlet property="imageDateLabel" destination="A7d-ZN-qOp" id="F7F-wW-iYS"/>
                 <outlet property="mainImageView" destination="ORa-bh-P7L" id="4N1-0g-5O4"/>
                 <outlet property="wordingLabel" destination="92X-pR-rAd" id="pWg-rf-utR"/>
@@ -58,4 +68,9 @@
             <point key="canvasLocation" x="257.24637681159425" y="216.62946428571428"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
