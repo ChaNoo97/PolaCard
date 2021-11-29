@@ -18,11 +18,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		guard let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
 		
+		cell.layer.cornerRadius = designHelper.cornerRadius
+		cell.backView.layer.cornerRadius = designHelper.cornerRadius
 		cell.backView.backgroundColor = designHelper.color1Light
 		
 		let row: PolaroidCardData
 		row = tasks[indexPath.row]
-		
+
 		//cell 파일로 옮기기
 		cell.imageDateLabel.font = designHelper.handWritingFont20
 		cell.wordingLabel.font = designHelper.handWritingFont20
@@ -52,9 +54,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		return cell
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		print(indexPath)
-		
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {		
 		let sb = UIStoryboard.init(name: "Modify", bundle: nil)
 		let vc = sb.instantiateViewController(withIdentifier: ModifyViewController.identifier) as! ModifyViewController
 		vc.modalPresentationStyle = .fullScreen

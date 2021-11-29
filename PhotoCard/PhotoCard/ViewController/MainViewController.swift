@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
 	var tasks: Results<PolaroidCardData>!
 	var imageWidth: CGFloat?
 	var imageHeight: CGFloat?
+	@IBOutlet weak var infoLabel: UILabel!
 	var filteredImageInCell: UIImage? {
 		didSet {
 			imageWidth = filteredImageInCell!.size.width
@@ -30,14 +31,23 @@ class MainViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		mainCollectionView.reloadData()
+		if tasks.count == 0 {
+			infoLabel.text = "우측 상단 + 버튼으로 이미지를 추가하세요."
+			infoLabel.textColor = UIColor.placeholderText
+			infoLabel.font = designHelper.handWritingFont20
+			infoLabel.textAlignment = .center
+		} else {
+			infoLabel.text = ""
+		}
 	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
 		self.view.backgroundColor = designHelper.color1
 		mainCollectionView.backgroundColor = designHelper.color1
 		
-		tasks = localRealm.objects(PolaroidCardData.self)
+		tasks = localRealm.objects(PolaroidCardData.self).sorted(byKeyPath: "date")
 		
 		navigationItem.title = "Main"
 		mainCollectionView.delegate = self
@@ -58,11 +68,13 @@ class MainViewController: UIViewController {
 		
 		mainCollectionView.collectionViewLayout = layout
 		
-		
 		let rightButton = UIBarButtonItem(image: UIImage(systemName: "plus.app"), style: .plain, target: self, action: #selector(rightButtonClicked(_:)))
-		
 		navigationItem.setRightBarButton(rightButton, animated: true)
-        
+		navigationItem.rightBarButtonItem!.tintColor = designHelper.color3
+		
+		navigationController?.navigationBar.barTintColor = designHelper.color1
+		self.tabBarController?.tabBar.barTintColor = designHelper.color1
+		self.tabBarController?.tabBar.tintColor = designHelper.color3
     }
     
 	@objc func rightButtonClicked(_ sender: UIBarButtonItem) {

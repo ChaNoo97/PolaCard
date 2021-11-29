@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingTableViewCell: UITableViewCell {
-
+	let designHelper = UIExtension()
 	static let identifier = "SettingTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()

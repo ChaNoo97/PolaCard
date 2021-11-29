@@ -14,7 +14,6 @@ extension UIViewController {
 		guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
 			
 		let filePath = documentDirectory.appendingPathComponent("Image")
-		print("filePath==> ",filePath)
 		if !FileManager.default.fileExists(atPath: filePath.path) {
 			do {
 				try FileManager.default.createDirectory(atPath: filePath.path, withIntermediateDirectories: true, attributes: nil)
@@ -30,7 +29,6 @@ extension UIViewController {
 		if FileManager.default.fileExists(atPath: imageURL.path) {
 			do {
 			try FileManager.default.removeItem(at: imageURL)
-				print("이미지 삭제 완료")
 			}
 			catch {
 				print("이미지 삭제하지 못했습니다.")
@@ -55,6 +53,28 @@ extension UIViewController {
 			return UIImage(contentsOfFile: imageURL.path)
 		}
 		return nil
+	}
+	
+	func deleteImageToDocumentDirectory(imageName: String) {
+		guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+		let filePath = documentDirectory.appendingPathComponent("Image")
+		if !FileManager.default.fileExists(atPath: filePath.path) {
+			do {
+				try FileManager.default.createDirectory(atPath: filePath.path, withIntermediateDirectories: true, attributes: nil)
+			} catch {
+				print(error.localizedDescription)
+			}
+		}
+		
+		let imageURL = filePath.appendingPathComponent(imageName)
+		
+		if FileManager.default.fileExists(atPath: imageURL.path) {
+			do {
+				try FileManager.default.removeItem(at: imageURL)
+			} catch {
+				print("이미지 삭제 못함")
+			}
+		}
 	}
     
     

@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NGh-Oz-IHx">
-                        <rect key="frame" x="0.0" y="0.0" width="102" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="102" height="83"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYj-Pc-5S5">
-                        <rect key="frame" x="0.0" y="85" width="102" height="20"/>
+                        <rect key="frame" x="0.0" y="83" width="102" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="mBl-gz-4pO"/>
                         </constraints>
@@ -35,7 +35,7 @@
             <constraints>
                 <constraint firstItem="NGh-Oz-IHx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="0My-Uq-OOl"/>
                 <constraint firstItem="KYj-Pc-5S5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3sv-we-DTL"/>
-                <constraint firstAttribute="bottom" secondItem="KYj-Pc-5S5" secondAttribute="bottom" id="JU3-CF-zKe"/>
+                <constraint firstAttribute="bottom" secondItem="KYj-Pc-5S5" secondAttribute="bottom" constant="2" id="JU3-CF-zKe"/>
                 <constraint firstAttribute="trailing" secondItem="NGh-Oz-IHx" secondAttribute="trailing" id="MRZ-tk-q8B"/>
                 <constraint firstItem="NGh-Oz-IHx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UsL-RB-t33"/>
                 <constraint firstItem="KYj-Pc-5S5" firstAttribute="top" secondItem="NGh-Oz-IHx" secondAttribute="bottom" id="p89-pc-Wl9"/>

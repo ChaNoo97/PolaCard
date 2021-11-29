@@ -15,7 +15,9 @@ class UIExtension: UIViewController {
 	let collectionViewSpacing: CGFloat = 20
 	let shadowRadius: CGFloat = 15
 	let cornerRadius: CGFloat = 5
-	let color1 = UIColor.init(red: 246/255, green: 215/255, blue: 167/255, alpha: 1)
+	
+	let color0 = UIColor.init(red: 58/255, green: 119/255, blue: 190/255, alpha: 1)
+	let color1 = UIColor.init(red: 250/255, green: 236/255, blue: 213/255, alpha: 1)
 	let color1Light = UIColor.init(red: 253/255, green: 247/255, blue: 236/255, alpha: 1)
 	let color2 = UIColor.init(red: 200/255, green: 227/255, blue: 212/255, alpha: 1)
 	let color3 = UIColor.init(red: 135/255, green: 170/255, blue: 170/255, alpha: 1)

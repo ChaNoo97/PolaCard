@@ -10,12 +10,16 @@ import UIKit
 class FilterCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var filteredImage: UIImageView!
 	@IBOutlet weak var filterName: UILabel!
+	let designHelper = UIExtension()
+	
 	override var isSelected: Bool {
 		didSet {
 			if isSelected {
-				layer.borderColor = UIColor.orange.cgColor
+				layer.borderWidth = 2
+				layer.borderColor = designHelper.color0.cgColor
 			} else {
-				layer.borderColor = UIColor.black.cgColor
+				layer.borderWidth = 2
+				layer.borderColor = designHelper.color3.cgColor
 			}
 		}
 	}

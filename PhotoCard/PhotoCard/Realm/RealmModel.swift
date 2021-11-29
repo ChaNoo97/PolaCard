@@ -12,7 +12,8 @@ class PolaroidCardData: Object {
 	@Persisted var wordingText: String?
 	@Persisted var imageDate: String
     @Persisted var filterNum: Int
-		
+	@Persisted var date: Date
+	
 	@Persisted(primaryKey: true) var _id: ObjectId
 	
     convenience init(wordingText: String?, imageDate: String, filterNum: Int) {

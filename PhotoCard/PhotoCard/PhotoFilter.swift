@@ -11,9 +11,18 @@ import UIKit
 struct ciFilterNames {
 	
 	let filter: [String] = [
-		"CISepiaTone",
-		"CIPhotoEffectTransfer"
+		"CIPhotoEffectInstant",
+		"CIPhotoEffectTransfer",
+		"CIPhotoEffectFade",
+		"CIPhotoEffectChrome",
+		"CIPhotoEffectNoir"
 	]
 	
-	
+	let filterKor: [String] = [
+		"즉석사진",
+		"따듯한",
+		"빛바랜",
+		"밝은",
+		"누아르"
+	]
 }

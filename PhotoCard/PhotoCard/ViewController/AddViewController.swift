@@ -19,18 +19,20 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	let picker = UIImagePickerController()
 	var value: UIImage? {
 		didSet {
-			filterCollectionView.isHidden = false
 			let nowDate = Date()
 			let dateFormatter = DateFormatter()
 			dateFormatter.dateFormat = "yyyy.MM.dd"
 			dateFormatter.locale = Locale(identifier: "ko_KR")
 			let stringDate = dateFormatter.string(from: nowDate)
 			imageDateLabel.text = stringDate
+			placeholderLabel.text = ""
+			filterCollectionView.isHidden = false
 		}
 	}
 	var imageURL: URL?
     var userFilterNum: Int = 0
     var imageWidth: CGFloat = 0
+	let config = UIImage.SymbolConfiguration(pointSize: 10, weight: .ultraLight, scale: .small)
 	
 	@IBOutlet weak var newAddedImage: UIImageView!
 	@IBOutlet weak var backButton: UIButton!
@@ -42,6 +44,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var filterCollectionView: UICollectionView!
 	@IBOutlet weak var polaroidcardView: UIView!
 	@IBOutlet weak var topView: UIView!
+	@IBOutlet weak var placeholderLabel: UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,25 +54,30 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		polaroidcardView.backgroundColor = designHelper.color1Light
 		wordingTextField.backgroundColor = designHelper.color1Light
 		imageDateLabel.backgroundColor = designHelper.color1Light
-		newAddedImage.backgroundColor = designHelper.color1Light
-		filterCollectionView.backgroundColor = designHelper.color3
+		
+		
+		placeholderLabel.font = designHelper.handWritingFont20
+		placeholderLabel.text = "아래 카메라/앨범 버튼을 이용하여 사진을 추가해주세요"
+		placeholderLabel.numberOfLines = 0
+		placeholderLabel.textAlignment = .center
+		placeholderLabel.textColor = UIColor.placeholderText
 		
 		print("realm", localRealm.configuration.fileURL!)
 		
 		designHelper.buttonDesgin(btn: backButton, tintColor: designHelper.color3, title: "뒤로가기")
 		backButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: backButton, borderWidthValue: 1, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
+		designHelper.buttonLayerDesign(btn: backButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
 		
 		designHelper.buttonDesgin(btn: libraryButton, tintColor: designHelper.color3, title: nil)
-		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 1, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
+		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
 		libraryButton.setImage(UIImage(named: "LibrarySymbol"), for: .normal)
 		
 		designHelper.buttonDesgin(btn: cameraButton, tintColor: designHelper.color3, title: nil)
 		cameraButton.setImage(UIImage(systemName: "camera"), for: .normal)
-		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 1, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
+		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
 		
 		designHelper.addViewSaveButton(btn: saveButton)
-		designHelper.buttonLayerDesign(btn: saveButton, borderWidthValue: 1, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
+		designHelper.buttonLayerDesign(btn: saveButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
 		
 		polaroidcardView.layer.cornerRadius = designHelper.cornerRadius
 		polaroidcardView.layer.shadowOffset = CGSize(width: 10, height: 2)
@@ -91,16 +99,15 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		picker.allowsEditing = false
         
 		//삭제할 코드
-		newAddedImage.image = UIImage(systemName: "star")
+		
         imageWidth = newAddedImage.bounds.width
        
 		let layout = UICollectionViewFlowLayout()
 		
 		let spacing: CGFloat = 10
-		let cellWidth: CGFloat = 50
+		let cellWidth: CGFloat = 70
 		layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
-		let sideEdgeInset:CGFloat = cellWidth*CGFloat((ciFilters.filter.count+1))-cellWidth/2
-		layout.sectionInset = UIEdgeInsets(top: 5, left: sideEdgeInset, bottom: 5, right: sideEdgeInset)
+		layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
 		layout.minimumLineSpacing = 2*spacing
 		
 		layout.scrollDirection = .horizontal
@@ -108,7 +115,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		filterCollectionView.collectionViewLayout = layout
 		
 		filterCollectionView.layer.cornerRadius = designHelper.cornerRadius
-		filterCollectionView.backgroundColor = .systemGray5
+		filterCollectionView.backgroundColor = designHelper.color1
 		
 		filterCollectionView.isHidden = true
     }
@@ -137,9 +144,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	@IBAction func saveButtonClicked(_ sender: UIButton) {
-		print(#function)
+		
 		guard let image = value else {
-			return
+			return dismiss(animated: true, completion: nil)
 		}
 		
 		let task = PolaroidCardData(wordingText: wordingTextField.text, imageDate: imageDateLabel.text!, filterNum: userFilterNum)
@@ -159,7 +166,6 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		guard let originalImage = info[.originalImage] as? UIImage else { return }
         //오리지날 이미지 -> 다운 이미지
-        print("오리지널 스케일",originalImage.size.width)
         let downImage = resizeImage(image: originalImage, newWidth: originalImage.size.width, newHeight: originalImage.size.height)
         //벨류 = 다운이미지
 		value = downImage
