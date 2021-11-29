@@ -50,11 +50,11 @@
             </objects>
             <point key="canvasLocation" x="944.92753623188412" y="93.75"/>
         </scene>
-        <!--Item-->
+        <!--Setting-->
         <scene sceneID="I2L-Fr-pu6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="utL-gR-Pgf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="GearSymbol" id="ivk-Ub-STa"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="GearSymbol" id="ivk-Ub-STa"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RYf-j8-oPT">

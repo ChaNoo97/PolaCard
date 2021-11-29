@@ -14,7 +14,7 @@ class SettingViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
+		navigationItem.title = "Setting"
 		settingTableView.delegate = self
 		settingTableView.dataSource = self
 		self.view.backgroundColor = designHelper.color1

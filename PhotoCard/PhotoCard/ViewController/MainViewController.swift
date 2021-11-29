@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
 		
 		tasks = localRealm.objects(PolaroidCardData.self).sorted(byKeyPath: "date")
 		
-		navigationItem.title = "Main"
+		navigationItem.title = "Home"
 		mainCollectionView.delegate = self
 		mainCollectionView.dataSource = self
 		let nibName = UINib(nibName: MainCollectionViewCell.identifier, bundle: nil)

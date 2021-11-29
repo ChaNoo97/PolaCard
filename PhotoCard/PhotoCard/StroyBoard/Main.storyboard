@@ -55,11 +55,11 @@
             </objects>
             <point key="canvasLocation" x="944.92753623188412" y="93.75"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="2tH-WC-gWp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="khw-Ch-5DD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="house" catalog="system" id="aAx-jh-D7l"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="aAx-jh-D7l"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kKV-HY-C0W">
