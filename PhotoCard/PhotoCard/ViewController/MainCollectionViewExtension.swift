@@ -17,6 +17,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		guard let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
+		
+		cell.backView.backgroundColor = designHelper.color1Light
+		
 		let row: PolaroidCardData
 		row = tasks[indexPath.row]
 		
@@ -54,6 +57,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		
 		let sb = UIStoryboard.init(name: "Modify", bundle: nil)
 		let vc = sb.instantiateViewController(withIdentifier: ModifyViewController.identifier) as! ModifyViewController
+		vc.modalPresentationStyle = .fullScreen
 		vc.modifyCard = tasks[indexPath.row]
 		present(vc, animated: true, completion: nil)
 	}

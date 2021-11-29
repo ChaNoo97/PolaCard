@@ -9,24 +9,33 @@ import UIKit
 import RealmSwift
 
 class MainViewController: UIViewController {
-	
+	let identifier = "MainViewController"
 	let designHelper = UIExtension()
 	let filters = ciFilterNames()
 	let localRealm = try! Realm()
 	var tasks: Results<PolaroidCardData>!
-    var filteredImageInCell: UIImage?
+	var imageWidth: CGFloat?
+	var imageHeight: CGFloat?
+	var filteredImageInCell: UIImage? {
+		didSet {
+			imageWidth = filteredImageInCell!.size.width
+			imageHeight = filteredImageInCell!.size.height
+		}
+	}
+	
     var filterNum: Int?
 	
 	@IBOutlet weak var mainCollectionView: UICollectionView!
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		print(#function)
 		mainCollectionView.reloadData()
 	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		self.view.backgroundColor = designHelper.color1
+		mainCollectionView.backgroundColor = designHelper.color1
 		
 		tasks = localRealm.objects(PolaroidCardData.self)
 		

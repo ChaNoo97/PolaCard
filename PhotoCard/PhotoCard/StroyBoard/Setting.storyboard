@@ -54,7 +54,7 @@
         <scene sceneID="I2L-Fr-pu6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="utL-gR-Pgf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="gearshape" catalog="system" id="ivk-Ub-STa"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="GearSymbol" id="ivk-Ub-STa"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RYf-j8-oPT">
@@ -72,7 +72,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="GearSymbol" width="14" height="14"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

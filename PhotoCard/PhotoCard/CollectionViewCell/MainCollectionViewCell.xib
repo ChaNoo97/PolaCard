@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7d-ZN-qOp">
-                        <rect key="frame" x="105.5" y="384.5" width="89.5" height="25"/>
+                        <rect key="frame" x="93.5" y="384.5" width="89.5" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="92X-pR-rAd" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.08" id="L7J-1Z-7c0"/>
-                <constraint firstItem="A7d-ZN-qOp" firstAttribute="trailing" secondItem="92X-pR-rAd" secondAttribute="trailing" id="Lo2-wH-f3p"/>
+                <constraint firstItem="A7d-ZN-qOp" firstAttribute="trailing" secondItem="92X-pR-rAd" secondAttribute="trailing" constant="-12" id="Lo2-wH-f3p"/>
                 <constraint firstItem="ORa-bh-P7L" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="NSg-Rr-cGL"/>
                 <constraint firstItem="92X-pR-rAd" firstAttribute="leading" secondItem="ORa-bh-P7L" secondAttribute="leading" id="TMk-M3-mti"/>
                 <constraint firstAttribute="bottom" secondItem="s4Z-s5-cPA" secondAttribute="bottom" constant="10" id="WXp-Fr-xm3"/>

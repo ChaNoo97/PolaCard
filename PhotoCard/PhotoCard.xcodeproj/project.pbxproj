@@ -21,6 +21,7 @@
 		FE579B23274E0A36000C258E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FE579B22274E0A36000C258E /* Realm */; };
 		FE579B25274E0A36000C258E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE579B24274E0A36000C258E /* RealmSwift */; };
 		FE579B29274F5E88000C258E /* PhotoDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579B28274F5E88000C258E /* PhotoDataExtension.swift */; };
+		FE640D4A27534ED000AFD405 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE640D4927534ED000AFD405 /* IQKeyboardManagerSwift */; };
 		FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491F82744DCE600AB8995 /* AlbumViewController.swift */; };
 		FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491FE2744DDF200AB8995 /* MainViewController.swift */; };
 		FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7492002744DE0700AB8995 /* SettingViewController.swift */; };
@@ -89,6 +90,7 @@
 			files = (
 				FE579B25274E0A36000C258E /* RealmSwift in Frameworks */,
 				FE579B23274E0A36000C258E /* Realm in Frameworks */,
+				FE640D4A27534ED000AFD405 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +213,7 @@
 			packageProductDependencies = (
 				FE579B22274E0A36000C258E /* Realm */,
 				FE579B24274E0A36000C258E /* RealmSwift */,
+				FE640D4927534ED000AFD405 /* IQKeyboardManagerSwift */,
 			);
 			productName = PhotoCard;
 			productReference = FECA36E92742D02E00C01FF8 /* PhotoCard.app */;
@@ -242,6 +245,7 @@
 			mainGroup = FECA36E02742D02E00C01FF8;
 			packageReferences = (
 				FE579B21274E0A36000C258E /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				FE640D4827534ED000AFD405 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = FECA36EA2742D02E00C01FF8 /* Products */;
 			projectDirPath = "";
@@ -451,11 +455,15 @@
 				DEVELOPMENT_TEAM = NNJ9X2K872;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoCard/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "심사 리젝 가능성.. 출시전 자세히 명세 ";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "심사 리젝 가능성.. 출시전 자세히 명세 ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Base;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -480,11 +488,15 @@
 				DEVELOPMENT_TEAM = NNJ9X2K872;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoCard/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "심사 리젝 가능성.. 출시전 자세히 명세 ";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "심사 리젝 가능성.. 출시전 자세히 명세 ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Base;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,6 +543,14 @@
 				version = 10.18.0;
 			};
 		};
+		FE640D4827534ED000AFD405 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -543,6 +563,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FE579B21274E0A36000C258E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		FE640D4927534ED000AFD405 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE640D4827534ED000AFD405 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

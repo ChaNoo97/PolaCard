@@ -15,10 +15,11 @@ class MainCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var imageDateLabel: UILabel!
 	
 	static let identifier = "MainCollectionViewCell"
+	let designHelper = UIExtension()
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+	
     }
 
 }
