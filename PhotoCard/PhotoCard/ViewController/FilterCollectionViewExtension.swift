@@ -26,14 +26,14 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 		if indexPath.row == 0 {
 			cell.filteredImage.image = value
 			cell.filterName.text = "원본"
-			cell.filterName.font = designHelper.handWritingFont20
+			cell.filterName.font = designHelper.handWritingFont15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 		} else {
 			cell.filteredImage.image = value
 			cell.filteredImage.image = makeFilterImage(userSelectImage: (value ?? UIImage(named: "LunchImage"))!, filterName: ciFilters.filter[indexPath.row-1])
 			cell.filterName.text = ciFilters.filterKor[indexPath.row-1]
-			cell.filterName.font = designHelper.handWritingFont20
+			cell.filterName.font = designHelper.handWritingFont15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 			

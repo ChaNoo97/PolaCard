@@ -151,13 +151,13 @@ extension ModifyViewController: UICollectionViewDelegate, UICollectionViewDataSo
 		if indexPath.row == 0 {
 			cell.filteredImage.image = loadImage
 			cell.filterName.text = "원본"
-			cell.filterName.font = designHelper.handWritingFont20
+			cell.filterName.font = designHelper.handWritingFont15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 		} else {
 			cell.filteredImage.image = makeFilterImage(userSelectImage: (loadImage ?? UIImage(systemName: "star"))!, filterName: filters.filter[indexPath.row-1])
 			cell.filterName.text = filters.filterKor[indexPath.row-1]
-			cell.filterName.font = designHelper.handWritingFont20
+			cell.filterName.font = designHelper.handWritingFont15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 			

@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
 		self.view.backgroundColor = designHelper.color1
 		mainCollectionView.backgroundColor = designHelper.color1
 		
-		tasks = localRealm.objects(PolaroidCardData.self).sorted(byKeyPath: "date")
+		tasks = localRealm.objects(PolaroidCardData.self).sorted(byKeyPath: "date", ascending: false)
 		
 		navigationItem.title = "Home"
 		mainCollectionView.delegate = self

@@ -9,7 +9,13 @@ import UIKit
 
 class SettingTableViewCell: UITableViewCell {
 	let designHelper = UIExtension()
+	
 	static let identifier = "SettingTableViewCell"
+	
+	@IBOutlet weak var nameLabel: UILabel!
+	
+	
+	
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

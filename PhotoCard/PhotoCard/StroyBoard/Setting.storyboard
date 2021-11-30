@@ -17,17 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Eym-k0-3LY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Eym-k0-3LY">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SettingTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTableViewCell" id="tGC-sK-mhg" customClass="SettingTableViewCell" customModule="PhotoCard" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SettingTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingTableViewCell" rowHeight="84" id="tGC-sK-mhg" customClass="SettingTableViewCell" customModule="PhotoCard" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="49.5" width="374" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tGC-sK-mhg" id="gaQ-iQ-GjU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbk-1z-pID">
+                                                    <rect key="frame" x="30" y="11" width="41.5" height="62"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rbk-1z-pID" firstAttribute="top" secondItem="gaQ-iQ-GjU" secondAttribute="topMargin" id="9Ca-i8-WaI"/>
+                                                <constraint firstItem="rbk-1z-pID" firstAttribute="bottom" secondItem="gaQ-iQ-GjU" secondAttribute="bottomMargin" id="f0n-96-wDp"/>
+                                                <constraint firstItem="rbk-1z-pID" firstAttribute="leading" secondItem="gaQ-iQ-GjU" secondAttribute="leadingMargin" constant="10" id="wdx-Qy-npF"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="rbk-1z-pID" id="XaZ-fO-0vH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
