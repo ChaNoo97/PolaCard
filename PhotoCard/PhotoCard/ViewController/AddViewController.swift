@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import Photos
 
 class AddViewController: UIViewController, UITextFieldDelegate {
 	let designHelper = UIExtension()
@@ -32,7 +33,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	var imageURL: URL?
     var userFilterNum: Int = 0
     var imageWidth: CGFloat = 0
-	let config = UIImage.SymbolConfiguration(pointSize: 10, weight: .ultraLight, scale: .small)
 	
 	@IBOutlet weak var newAddedImage: UIImageView!
 	@IBOutlet weak var backButton: UIButton!
@@ -97,8 +97,14 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 		picker.delegate = self
 		picker.allowsEditing = false
-        
-		//삭제할 코드
+		
+		PHPhotoLibrary.requestAuthorization { (state) in
+			print(state)
+		}
+		AVCaptureDevice.requestAccess(for: .video) { (result) in
+			print(result)
+		}
+		
 		
         imageWidth = newAddedImage.bounds.width
        
@@ -125,6 +131,20 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		return true
 	}
 	
+	func settingAlert(AuthString: String) {
+		if let appName = Bundle.main.infoDictionary!["CFBundleName"] as? String {
+			let alert = UIAlertController(title: "설정", message: "\(appName)가 \(AuthString) 접근이 허용되어 있지 않습니다. 설정화면으로 가시겠습니까?", preferredStyle: .alert)
+			let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+			let confirmAction = UIAlertAction(title: "확인", style: .default) { action in
+				UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+			}
+			
+			alert.addAction(cancleAction)
+			alert.addAction(confirmAction)
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+	
 	@IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
 		view.endEditing(true)
 	}
@@ -134,13 +154,22 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	@IBAction func libraryButtonclicked(_ sender: UIButton) {
-		picker.sourceType = .photoLibrary
-		present(picker, animated: true, completion: nil)
+		if photoCheckAuthorization() {
+			self.picker.sourceType = .photoLibrary
+			self.present(self.picker, animated: true, completion: nil)
+		} else {
+			settingAlert(AuthString: "앨범")
+		}
 	}
 	
 	@IBAction func caremaButtonClicked(_ sender: UIButton) {
-		picker.sourceType = .camera
-		present(picker, animated: true, completion: nil)
+		if cameraAuthorization() {
+			self.picker.sourceType = .camera
+			self.present(picker, animated: true, completion: nil)
+		} else {
+			settingAlert(AuthString: "카메라")
+		}
+		
 	}
 	
 	@IBAction func saveButtonClicked(_ sender: UIButton) {
@@ -176,7 +205,11 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
 			self.filterCollectionView.reloadData()
 		}
 	}
-    
+	
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		dismiss(animated: true, completion: nil)
+	}
+	
     func resizeImage(image: UIImage, newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
         let newWidth = newWidth/2
         let newHeight = newHeight/2
@@ -186,7 +219,37 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
         UIGraphicsEndImageContext()
         return newImage!
     }
-    
+	
+	func photoCheckAuthorization() -> Bool {
+		let authorizationStatus = PHPhotoLibrary.authorizationStatus()
+		
+		var isAuth = false
+		
+		switch authorizationStatus {
+		case .notDetermined:
+			PHPhotoLibrary.requestAuthorization { (state) in
+				if state == .authorized {
+					isAuth = true
+				}
+			}
+			return isAuth
+		case .restricted:
+			break
+		case .denied:
+			break
+		case .authorized:
+			return true
+		case .limited:
+			break
+		default: break
+		}
+		return false
+	}
+	
+	func cameraAuthorization() -> Bool {
+		return AVCaptureDevice.authorizationStatus(for: .video) == AVAuthorizationStatus.authorized
+	}
+	
     
 }
 

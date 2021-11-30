@@ -15,9 +15,13 @@ class SettingViewController: UIViewController {
 	@IBOutlet weak var settingTableView: UITableView!
 	
 	let settingKor: [String] = ["백업하기","복구하기"]
-	
+	let localRealm = try! Realm()
+	var tasks: Results<PolaroidCardData>!
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		tasks = localRealm.objects(PolaroidCardData.self)
+		
 		navigationItem.title = "Setting"
 		settingTableView.delegate = self
 		settingTableView.dataSource = self
@@ -25,6 +29,11 @@ class SettingViewController: UIViewController {
 		settingTableView.backgroundColor = designHelper.color1
 		self.navigationController?.navigationBar.barTintColor = designHelper.color1
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		settingTableView.reloadData()
+	}
 	
 	func documentDirectoryPath() -> String? {
 		let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
@@ -70,7 +79,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 		if section == 0 {
 			return 2
 		} else {
-			return 3
+			return 1
 		}
 	}
 	
@@ -82,6 +91,14 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 		if indexPath.section == 0 {
 			cell.nameLabel.text = settingKor[indexPath.row]
 			cell.nameLabel.font = designHelper.handWritingFont20
+		}
+		
+		if indexPath.section == 1 {
+			cell.nameLabel.text = "저장된 사진수: \(tasks.count)"
+			cell.nameLabel.font = designHelper.handWritingFont20
+			if indexPath.row == 0 {
+				cell.selectionStyle = .none
+			}
 		}
 		
 		return cell
@@ -122,7 +139,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 				
 			} else {
 				let alert = UIAlertController(title: "복구", message: "복구할 파일이 선택되면 앱이 자동으로 종료됩니다.", preferredStyle: .alert)
-				let cancle = UIAlertAction(title: "cancle", style: .cancel) { action in
+				let cancle = UIAlertAction(title: "확인", style: .cancel) { action in
 					let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeArchive as String], in: .import)
 					documentPicker.delegate = self
 					documentPicker.allowsMultipleSelection = false

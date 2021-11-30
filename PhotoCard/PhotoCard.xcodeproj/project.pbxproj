@@ -23,6 +23,8 @@
 		FE579B29274F5E88000C258E /* PhotoDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE579B28274F5E88000C258E /* PhotoDataExtension.swift */; };
 		FE640D4A27534ED000AFD405 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE640D4927534ED000AFD405 /* IQKeyboardManagerSwift */; };
 		FE640D4D2755F97E00AFD405 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = FE640D4C2755F97E00AFD405 /* Zip */; };
+		FE640D4F275682B000AFD405 /* License.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE640D4E275682B000AFD405 /* License.storyboard */; };
+		FE640D51275682CB00AFD405 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE640D50275682CB00AFD405 /* LicenseViewController.swift */; };
 		FE7491F92744DCE600AB8995 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491F82744DCE600AB8995 /* AlbumViewController.swift */; };
 		FE7491FF2744DDF200AB8995 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7491FE2744DDF200AB8995 /* MainViewController.swift */; };
 		FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7492002744DE0700AB8995 /* SettingViewController.swift */; };
@@ -59,6 +61,8 @@
 		FE579B1D274DFE6B000C258E /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		FE579B1F274E04C6000C258E /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		FE579B28274F5E88000C258E /* PhotoDataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataExtension.swift; sourceTree = "<group>"; };
+		FE640D4E275682B000AFD405 /* License.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = License.storyboard; sourceTree = "<group>"; };
+		FE640D50275682CB00AFD405 /* LicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
 		FE7491F82744DCE600AB8995 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		FE7491FE2744DDF200AB8995 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FE7492002744DE0700AB8995 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				FE7492122746242A00AB8995 /* PickingViewController.swift */,
 				FE7492142746243D00AB8995 /* LookViewController.swift */,
 				FE7492162746244800AB8995 /* ModifyViewController.swift */,
+				FE640D50275682CB00AFD405 /* LicenseViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				FE74920A274623EE00AB8995 /* Picking.storyboard */,
 				FE74920C274623F700AB8995 /* Look.storyboard */,
 				FE74920E2746240500AB8995 /* Modify.storyboard */,
+				FE640D4E275682B000AFD405 /* License.storyboard */,
 			);
 			path = StroyBoard;
 			sourceTree = "<group>";
@@ -273,6 +279,7 @@
 				FE579AEC27493FF1000C258E /* Kyobo Handwriting 2019.otf in Resources */,
 				FE74920F2746240500AB8995 /* Modify.storyboard in Resources */,
 				FE7492072744E61400AB8995 /* Album.storyboard in Resources */,
+				FE640D4F275682B000AFD405 /* License.storyboard in Resources */,
 				FECA36F62742D03100C01FF8 /* Assets.xcassets in Resources */,
 				FECA36F42742D02E00C01FF8 /* Base.storyboard in Resources */,
 				FE579AF4274B7CEC000C258E /* FilterCollectionViewCell.xib in Resources */,
@@ -305,6 +312,7 @@
 				FE579B1E274DFE6B000C258E /* RealmModel.swift in Sources */,
 				FE579B20274E04C6000C258E /* UIExtension.swift in Sources */,
 				FE579ADA27464B1B000C258E /* MainCollectionViewExtension.swift in Sources */,
+				FE640D51275682CB00AFD405 /* LicenseViewController.swift in Sources */,
 				FE579AF8274D5964000C258E /* PhotoFilter.swift in Sources */,
 				FE579AF6274D3274000C258E /* FilterCollectionViewExtension.swift in Sources */,
 				FE7492012744DE0700AB8995 /* SettingViewController.swift in Sources */,
