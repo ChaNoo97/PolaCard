@@ -12,6 +12,8 @@ class UIExtension: UIViewController {
 	
 	let handWritingFont20 = UIFont(name: "KyoboHandwriting2019", size: 20)
 	let handWritingFont15 = UIFont(name: "KyoboHandwriting2019", size: 15)
+	let handWritingFont13 = UIFont(name: "KyoboHandwriting2019", size: 13)
+	
 	let collectionViewSpacing: CGFloat = 20
 	let shadowRadius: CGFloat = 15
 	let cornerRadius: CGFloat = 5
@@ -38,6 +40,12 @@ class UIExtension: UIViewController {
 		btn.setTitle("저장하기", for: .normal)
 		btn.titleLabel?.font = handWritingFont15
 		btn.tintColor = color3
+	}
+	
+	func checkMaxLenght(textField: UITextField, maxLenght: Int) {
+		if (textField.text?.count ?? 0 > maxLenght) {
+			textField.deleteBackward()
+		}
 	}
 	
 }

@@ -28,8 +28,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		//cell 파일로 옮기기
 		cell.imageDateLabel.font = designHelper.handWritingFont20
 		cell.wordingLabel.font = designHelper.handWritingFont20
-		
+		if let cnt = row.wordingText?.count {
+			if cnt > 27 {
+				cell.wordingLabel.font = designHelper.handWritingFont13
+			} else if cnt > 16 {
+				cell.wordingLabel.font = designHelper.handWritingFont15
+			} else {
+				cell.wordingLabel.font = designHelper.handWritingFont20
+			}
+		}
 		cell.wordingLabel.text = row.wordingText
+		
 		
         filterNum = row.filterNum
 		

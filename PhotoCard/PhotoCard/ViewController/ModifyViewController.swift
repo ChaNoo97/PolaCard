@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ModifyViewController: UIViewController {
+class ModifyViewController: UIViewController, UITextFieldDelegate {
 	
 	static let identifier = "ModifyViewController"
 	
@@ -45,6 +45,8 @@ class ModifyViewController: UIViewController {
 		polaroidCardView.layer.shadowOffset = CGSize(width: 10, height: 2)
 		polaroidCardView.layer.shadowRadius = designHelper.shadowRadius
 		
+		modifyWordingTextField.delegate = self
+		
 		guard let modifyCard = modifyCard else {return}
 		loadImage = loadImageFromDocumentDirectory(imageName: "\(modifyCard._id)")
 		let filterNum = modifyCard.filterNum
@@ -56,7 +58,7 @@ class ModifyViewController: UIViewController {
 		}
 		modifyWordingTextField.font = designHelper.handWritingFont20
 		if modifyCard.wordingText == "" {
-			modifyWordingTextField.placeholder = "사진의 경험을 적어주세요"
+			modifyWordingTextField.placeholder = "사진의 경험을 적어주세요(25자 이내)"
 		} else {
 			modifyWordingTextField.text = modifyCard.wordingText
 		}
@@ -85,6 +87,11 @@ class ModifyViewController: UIViewController {
 		modifyCollectionView.backgroundColor = designHelper.color1
 		
     }
+	
+	func textFieldDidChangeSelection(_ textField: UITextField) {
+		designHelper.checkMaxLenght(textField: modifyWordingTextField, maxLenght: 25)
+	}
+
 
 	@IBAction func backButtonClicked(_ sender: UIButton) {
 		dismiss(animated: true, completion: nil)

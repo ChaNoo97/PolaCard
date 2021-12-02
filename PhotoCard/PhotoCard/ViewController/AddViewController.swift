@@ -85,7 +85,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		polaroidcardView.layer.shadowRadius = designHelper.shadowRadius
 		
 		wordingTextField.delegate = self
-		wordingTextField.placeholder = "사진의 경험을 적어보세요"
+		wordingTextField.placeholder = "사진의 경험을 적어보세요(25자 이내)"
 		wordingTextField.font = designHelper.handWritingFont20
 		imageDateLabel.text = ""
 		imageDateLabel.font = designHelper.handWritingFont20
@@ -98,9 +98,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		picker.delegate = self
 		picker.allowsEditing = false
 		
-		PHPhotoLibrary.requestAuthorization { (state) in
-			print(state)
-		}
+//		PHPhotoLibrary.requestAuthorization { (state) in
+//			print(state)
+//		}
 		AVCaptureDevice.requestAccess(for: .video) { (result) in
 			print(result)
 		}
@@ -131,6 +131,11 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		return true
 	}
 	
+	func textFieldDidChangeSelection(_ textField: UITextField) {
+		designHelper.checkMaxLenght(textField: wordingTextField, maxLenght: 25)
+	}
+
+	
 	func settingAlert(AuthString: String) {
 		if let appName = Bundle.main.infoDictionary!["CFBundleName"] as? String {
 			let alert = UIAlertController(title: "설정", message: "\(appName)가 \(AuthString) 접근이 허용되어 있지 않습니다. 설정화면으로 가시겠습니까?", preferredStyle: .alert)
@@ -154,12 +159,12 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	@IBAction func libraryButtonclicked(_ sender: UIButton) {
-		if photoCheckAuthorization() {
+//		if photoCheckAuthorization() {
 			self.picker.sourceType = .photoLibrary
 			self.present(self.picker, animated: true, completion: nil)
-		} else {
-			settingAlert(AuthString: "앨범")
-		}
+//		} else {
+//			settingAlert(AuthString: "앨범")
+//		}
 	}
 	
 	@IBAction func caremaButtonClicked(_ sender: UIButton) {
@@ -220,31 +225,31 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
         return newImage!
     }
 	
-	func photoCheckAuthorization() -> Bool {
-		let authorizationStatus = PHPhotoLibrary.authorizationStatus()
-		
-		var isAuth = false
-		
-		switch authorizationStatus {
-		case .notDetermined:
-			PHPhotoLibrary.requestAuthorization { (state) in
-				if state == .authorized {
-					isAuth = true
-				}
-			}
-			return isAuth
-		case .restricted:
-			break
-		case .denied:
-			break
-		case .authorized:
-			return true
-		case .limited:
-			break
-		default: break
-		}
-		return false
-	}
+//	func photoCheckAuthorization() -> Bool {
+//		let authorizationStatus = PHPhotoLibrary.authorizationStatus()
+//
+//		var isAuth = false
+//
+//		switch authorizationStatus {
+//		case .notDetermined:
+//			PHPhotoLibrary.requestAuthorization { (state) in
+//				if state == .authorized {
+//					isAuth = true
+//				}
+//			}
+//			return isAuth
+//		case .restricted:
+//			break
+//		case .denied:
+//			break
+//		case .authorized:
+//			return true
+//		case .limited:
+//			break
+//		default: break
+//		}
+//		return false
+//	}
 	
 	func cameraAuthorization() -> Bool {
 		return AVCaptureDevice.authorizationStatus(for: .video) == AVAuthorizationStatus.authorized
@@ -252,5 +257,6 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
 	
     
 }
+
 
 
