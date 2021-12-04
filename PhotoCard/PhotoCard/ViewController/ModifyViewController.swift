@@ -128,9 +128,11 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 			
 			self.present(alert, animated: true, completion: nil)
 		}
+		let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
 		
 		actionSheet.addAction(modify)
 		actionSheet.addAction(delete)
+		actionSheet.addAction(cancel)
 		
 		present(actionSheet, animated: true, completion: nil)
 	}
@@ -183,3 +185,5 @@ extension ModifyViewController: UICollectionViewDelegate, UICollectionViewDataSo
 	}
 	
 }
+
+
