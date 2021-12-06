@@ -36,26 +36,26 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     var imageWidth: CGFloat = 0
 	
 	@IBOutlet weak var newAddedImage: UIImageView!
-	@IBOutlet weak var backButton: UIButton!
 	@IBOutlet weak var libraryButton: UIButton!
 	@IBOutlet weak var cameraButton: UIButton!
 	@IBOutlet weak var wordingTextField: UITextField!
 	@IBOutlet weak var imageDateLabel: UILabel!
-	@IBOutlet weak var saveButton: UIButton!
 	@IBOutlet weak var filterCollectionView: UICollectionView!
 	@IBOutlet weak var polaroidcardView: UIView!
-	@IBOutlet weak var topView: UIView!
 	@IBOutlet weak var placeholderLabel: UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.tabBarController?.tabBar.isHidden = true
+		self.tabBarController?.tabBar.isTranslucent = true
+		
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장하기", style: .plain, target: self, action: #selector(saveBtnTapped))
+		
 		self.view.backgroundColor = designHelper.viewBackgroundColor
-		topView.backgroundColor = designHelper.viewBackgroundColor
 		polaroidcardView.backgroundColor = designHelper.cardBackgroundColor
 		wordingTextField.backgroundColor = designHelper.cardBackgroundColor
 		imageDateLabel.backgroundColor = designHelper.cardBackgroundColor
-		
 		
 		placeholderLabel.font = designHelper.handWritingFont20
 		placeholderLabel.text = "아래 카메라/앨범 버튼을 이용하여 사진을 추가해주세요"
@@ -65,10 +65,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 		print("realm", localRealm.configuration.fileURL!)
 		
-		designHelper.buttonDesgin(btn: backButton, tintColor: designHelper.buttonTintColor, title: "뒤로가기")
-		backButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: backButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
-		
 		designHelper.buttonDesgin(btn: libraryButton, tintColor: designHelper.buttonTintColor, title: nil)
 		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
 		libraryButton.setImage(UIImage(named: "LibrarySymbol"), for: .normal)
@@ -76,9 +72,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		designHelper.buttonDesgin(btn: cameraButton, tintColor: designHelper.buttonTintColor, title: nil)
 		cameraButton.setImage(UIImage(systemName: "camera"), for: .normal)
 		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
-		
-		designHelper.addViewSaveButton(btn: saveButton)
-		designHelper.buttonLayerDesign(btn: saveButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
 		
 		polaroidcardView.layer.cornerRadius = designHelper.cornerRadius
 		polaroidcardView.layer.shadowOffset = CGSize(width: 10, height: 2)
@@ -154,10 +147,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
 		view.endEditing(true)
 	}
-
-	@IBAction func backButtonClicked(_ sender: UIButton) {
-		dismiss(animated: true, completion: nil)
-	}
 	
 	@IBAction func libraryButtonclicked(_ sender: UIButton) {
 //		if photoCheckAuthorization() {
@@ -178,22 +167,22 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 	}
 	
-	@IBAction func saveButtonClicked(_ sender: UIButton) {
-		
+	@objc func saveBtnTapped(_ sender: UIBarButtonItem) {
 		guard let image = value else {
 			return dismiss(animated: true, completion: nil)
 		}
-		
+
 		let task = PolaroidCardData(wordingText: wordingTextField.text, imageDate: imageDateLabel.text!, filterNum: userFilterNum)
-		
+
 		try! localRealm.write {
 			localRealm.add(task)
 		}
-		
-        saveImageToDocumentDirectory(imageName: "\(task._id).png", image: image)
-		
-		dismiss(animated: true, completion: nil)
+
+		saveImageToDocumentDirectory(imageName: "\(task._id).png", image: image)
+
+		navigationController?.popViewController(animated: true)
 	}
+
 }
 
 extension AddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -17,6 +17,7 @@ class AlbumViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		navigationItem.title = "Album"
+		self.navigationController?.navigationBar.barTintColor = designHelper.viewBackgroundColor
 		albumCollectionView.delegate = self
 		albumCollectionView.dataSource = self
 		let nibName = UINib(nibName: AlbumCollectionViewCell.identifier, bundle: nil)
@@ -34,7 +35,6 @@ class AlbumViewController: UIViewController {
 		
 		albumCollectionView.collectionViewLayout = layout
 		
-		self.tabBarController?.tabBar.barTintColor = designHelper.buttonTintColor
     }
     
 

@@ -32,11 +32,10 @@ class MainViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		self.tabBarController?.tabBar.isHidden = false
 		mainCollectionView.reloadData()
 		// 처음 실행해도 오류 없음
 		mainCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-		// 처음실행하면오류: 아이템이 없는데 가라고 함
-//		mainCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
 		if tasks.count == 0 {
 			infoLabel.text = "우측 상단 + 버튼으로 이미지를 추가하세요."
 			infoLabel.textColor = UIColor.placeholderText
@@ -76,7 +75,7 @@ class MainViewController: UIViewController {
 		
 		let rightButton = UIBarButtonItem(image: UIImage(systemName: "plus.app"), style: .plain, target: self, action: #selector(rightButtonClicked(_:)))
 		navigationItem.setRightBarButton(rightButton, animated: true)
-		navigationItem.rightBarButtonItem!.tintColor = designHelper.buttonTintColor
+		navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
 		
 		navigationController?.navigationBar.barTintColor = designHelper.viewBackgroundColor
 		self.tabBarController?.tabBar.barTintColor = designHelper.viewBackgroundColor
@@ -86,8 +85,8 @@ class MainViewController: UIViewController {
 	@objc func rightButtonClicked(_ sender: UIBarButtonItem) {
 		let sb = UIStoryboard.init(name: "Add", bundle: nil)
 		let vc = sb.instantiateViewController(withIdentifier: AddViewController.identifier)
-		vc.modalPresentationStyle = .fullScreen
-		present(vc, animated: true, completion: nil)
+		
+		navigationController?.pushViewController(vc, animated: true)
 	}
 	
     
@@ -151,9 +150,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let sb = UIStoryboard.init(name: "Modify", bundle: nil)
 		let vc = sb.instantiateViewController(withIdentifier: ModifyViewController.identifier) as! ModifyViewController
-		vc.modalPresentationStyle = .fullScreen
 		vc.modifyCard = tasks[indexPath.row]
-		present(vc, animated: true, completion: nil)
+		
+		navigationController?.pushViewController(vc, animated: true)
 	}
 	
 	

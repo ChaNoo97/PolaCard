@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7l-Rn-OMb">
-                                <rect key="frame" x="20" y="104" width="374" height="648"/>
+                                <rect key="frame" x="20" y="54" width="374" height="698"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tPs-v5-JWw">
-                                        <rect key="frame" x="28" y="20" width="318" height="525"/>
+                                        <rect key="frame" x="28" y="20" width="318" height="575"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XLk-P9-s2h">
-                                        <rect key="frame" x="28" y="555" width="318" height="50"/>
+                                        <rect key="frame" x="28" y="605" width="318" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="VpM-dL-vqo"/>
                                         </constraints>
@@ -33,7 +33,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6c-TM-DdI">
-                                        <rect key="frame" x="175" y="615" width="159" height="25"/>
+                                        <rect key="frame" x="175" y="665" width="159" height="25"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="lOf-xw-MHl"/>
@@ -71,51 +71,21 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jG0-J3-Uu7">
-                                <rect key="frame" x="20" y="52" width="60" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="oH9-gC-dCG"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="backButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8te-iG-vPL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yd9-4m-dei">
-                                <rect key="frame" x="334" y="52" width="60" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="nN8-nX-Jsi"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="modifyButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="biu-PZ-8BN"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZUy-2N-xUD"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nSP-Ng-Ocm" firstAttribute="leading" secondItem="ZUy-2N-xUD" secondAttribute="leading" constant="20" id="09Y-bZ-SJl"/>
-                            <constraint firstItem="ZUy-2N-xUD" firstAttribute="trailing" secondItem="yd9-4m-dei" secondAttribute="trailing" constant="20" id="1HB-8O-tWF"/>
-                            <constraint firstItem="jG0-J3-Uu7" firstAttribute="leading" secondItem="ZUy-2N-xUD" secondAttribute="leading" constant="20" id="5Wl-KC-XXV"/>
                             <constraint firstItem="c7l-Rn-OMb" firstAttribute="leading" secondItem="ZUy-2N-xUD" secondAttribute="leading" constant="20" id="9dc-v6-ni4"/>
-                            <constraint firstItem="c7l-Rn-OMb" firstAttribute="top" secondItem="jG0-J3-Uu7" secondAttribute="bottom" constant="8" id="Ndx-9t-F9i"/>
                             <constraint firstItem="ZUy-2N-xUD" firstAttribute="trailing" secondItem="c7l-Rn-OMb" secondAttribute="trailing" constant="20" id="VR6-sf-m39"/>
                             <constraint firstItem="nSP-Ng-Ocm" firstAttribute="top" secondItem="c7l-Rn-OMb" secondAttribute="bottom" constant="8" symbolic="YES" id="eid-AV-dD0"/>
                             <constraint firstItem="ZUy-2N-xUD" firstAttribute="trailing" secondItem="nSP-Ng-Ocm" secondAttribute="trailing" constant="20" id="g5Q-N6-uqH"/>
-                            <constraint firstItem="jG0-J3-Uu7" firstAttribute="top" secondItem="ZUy-2N-xUD" secondAttribute="top" constant="8" id="gHI-uF-a6D"/>
                             <constraint firstItem="c7l-Rn-OMb" firstAttribute="centerX" secondItem="zPT-oS-sNv" secondAttribute="centerX" id="hzT-tG-HHT"/>
                             <constraint firstItem="ZUy-2N-xUD" firstAttribute="bottom" secondItem="nSP-Ng-Ocm" secondAttribute="bottom" constant="22" id="jM1-Ta-Hbd"/>
-                            <constraint firstItem="yd9-4m-dei" firstAttribute="top" secondItem="ZUy-2N-xUD" secondAttribute="top" constant="8" id="pP0-y5-xuN"/>
-                            <constraint firstItem="c7l-Rn-OMb" firstAttribute="top" secondItem="yd9-4m-dei" secondAttribute="bottom" constant="8" id="vLd-n2-Kb5"/>
-                            <constraint firstItem="c7l-Rn-OMb" firstAttribute="top" secondItem="ZUy-2N-xUD" secondAttribute="top" constant="60" id="zdI-Az-E5E"/>
+                            <constraint firstItem="c7l-Rn-OMb" firstAttribute="top" secondItem="ZUy-2N-xUD" secondAttribute="top" constant="10" id="zdI-Az-E5E"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backButton" destination="jG0-J3-Uu7" id="cmZ-Qb-OcG"/>
-                        <outlet property="modifyButton" destination="yd9-4m-dei" id="TkR-n7-vx9"/>
                         <outlet property="modifyCollectionView" destination="nSP-Ng-Ocm" id="PyY-Eo-d20"/>
                         <outlet property="modifyImageView" destination="tPs-v5-JWw" id="QW9-fQ-4AJ"/>
                         <outlet property="modifyWordingTextField" destination="XLk-P9-s2h" id="V7d-Az-xD7"/>

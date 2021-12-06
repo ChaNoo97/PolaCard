@@ -16,8 +16,6 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var modifyWordingTextField: UITextField!
 	@IBOutlet weak var saveDateLabel: UILabel!
 	@IBOutlet weak var polaroidCardView: UIView!
-	@IBOutlet weak var modifyButton: UIButton!
-	@IBOutlet weak var backButton: UIButton!
 	@IBOutlet weak var modifyCollectionView: UICollectionView!
 	
 	let localRealm = try! Realm()
@@ -28,6 +26,14 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		self.tabBarController?.tabBar.isHidden = true
+		self.tabBarController?.tabBar.isTranslucent = true
+		
+		let save = UIBarButtonItem(title: "저장하기", style: .plain, target: self, action: #selector(saveTapped))
+		let share = UIBarButtonItem(title: "공유하기", style: .plain, target: self, action: #selector(shareTapped))
+		navigationItem.rightBarButtonItems = [save, share]
+		
 		self.view.backgroundColor = designHelper.viewBackgroundColor
 		modifyImageView.backgroundColor = designHelper.cardBackgroundColor
 		polaroidCardView.backgroundColor = designHelper.cardBackgroundColor
@@ -66,12 +72,6 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		saveDateLabel.text = modifyCard.imageDate
 		saveDateLabel.font = designHelper.handWritingFont20
 		saveDateLabel.textAlignment = .right
-		designHelper.buttonDesgin(btn: modifyButton, tintColor: designHelper.buttonTintColor, title: "수정/삭제")
-		modifyButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: modifyButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
-		designHelper.buttonDesgin(btn: backButton, tintColor: designHelper.buttonTintColor, title: "뒤로가기")
-		backButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: backButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
 		
 		let layout = UICollectionViewFlowLayout()
 		let spacing: CGFloat = 10
@@ -91,52 +91,50 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	func textFieldDidChangeSelection(_ textField: UITextField) {
 		designHelper.checkMaxLenght(textField: modifyWordingTextField, maxLenght: 25)
 	}
-
-
-	@IBAction func backButtonClicked(_ sender: UIButton) {
-		dismiss(animated: true, completion: nil)
-	}
 	
-	@IBAction func modifyButtonClicked(_ sender: UIButton) {
+	@objc func saveTapped(_ sender: UIBarButtonItem) {
 		
 		let actionSheet = UIAlertController(title: nil, message: "수정/삭제", preferredStyle: .actionSheet)
-		
+
 		let modify = UIAlertAction(title: "수정", style: .default) { action in
-			
+
 			try! self.localRealm.write {
 				self.modifyCard?.wordingText = self.modifyWordingTextField.text
 			}
-			self.dismiss(animated: true, completion: nil)
+			self.navigationController?.popViewController(animated: true)
 		}
 		let delete = UIAlertAction(title: "삭제", style: .destructive) { action in
-			
+
 			let alert = UIAlertController(title: nil, message: "삭제하시겠습니까?", preferredStyle: .alert)
-			
+
 			let destructive = UIAlertAction(title: "삭제", style: .destructive) { action in
 				self.deleteImageToDocumentDirectory(imageName: "\(self.modifyCard!._id).png")
 				try! self.localRealm.write {
 					self.localRealm.delete(self.modifyCard!)
-					self.dismiss(animated: true, completion: nil)
+					self.navigationController?.popViewController(animated: true)
 				}
 			}
 			let cancle = UIAlertAction(title: "취소", style: .cancel) { action in
-				
+
 			}
-			
+
 			alert.addAction(destructive)
 			alert.addAction(cancle)
-			
+
 			self.present(alert, animated: true, completion: nil)
 		}
 		let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-		
+
 		actionSheet.addAction(modify)
 		actionSheet.addAction(delete)
 		actionSheet.addAction(cancel)
-		
+
 		present(actionSheet, animated: true, completion: nil)
 	}
-	
+
+	@objc func shareTapped(_ sender: UIBarButtonItem) {
+		print(#function)
+	}
 }
 
 extension ModifyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
