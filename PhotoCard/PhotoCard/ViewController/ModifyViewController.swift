@@ -28,11 +28,11 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		self.view.backgroundColor = designHelper.color1
-		modifyImageView.backgroundColor = designHelper.color1Light
-		polaroidCardView.backgroundColor = designHelper.color1Light
-		saveDateLabel.backgroundColor = designHelper.color1Light
-		modifyWordingTextField.backgroundColor = designHelper.color1Light
+		self.view.backgroundColor = designHelper.viewBackgroundColor
+		modifyImageView.backgroundColor = designHelper.cardBackgroundColor
+		polaroidCardView.backgroundColor = designHelper.cardBackgroundColor
+		saveDateLabel.backgroundColor = designHelper.cardBackgroundColor
+		modifyWordingTextField.backgroundColor = designHelper.cardBackgroundColor
 		
 		modifyCollectionView.delegate = self
 		modifyCollectionView.dataSource = self
@@ -66,12 +66,12 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		saveDateLabel.text = modifyCard.imageDate
 		saveDateLabel.font = designHelper.handWritingFont20
 		saveDateLabel.textAlignment = .right
-		designHelper.buttonDesgin(btn: modifyButton, tintColor: designHelper.color3, title: "수정/삭제")
+		designHelper.buttonDesgin(btn: modifyButton, tintColor: designHelper.buttonTintColor, title: "수정/삭제")
 		modifyButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: modifyButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
-		designHelper.buttonDesgin(btn: backButton, tintColor: designHelper.color3, title: "뒤로가기")
+		designHelper.buttonLayerDesign(btn: modifyButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
+		designHelper.buttonDesgin(btn: backButton, tintColor: designHelper.buttonTintColor, title: "뒤로가기")
 		backButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: backButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
+		designHelper.buttonLayerDesign(btn: backButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
 		
 		let layout = UICollectionViewFlowLayout()
 		let spacing: CGFloat = 10
@@ -84,7 +84,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		modifyCollectionView.collectionViewLayout = layout
 		
 		modifyCollectionView.layer.cornerRadius = designHelper.cornerRadius
-		modifyCollectionView.backgroundColor = designHelper.color1
+		modifyCollectionView.backgroundColor = designHelper.viewBackgroundColor
 		
     }
 	
@@ -150,7 +150,7 @@ extension ModifyViewController: UICollectionViewDelegate, UICollectionViewDataSo
 		
 		cell.layer.cornerRadius = designHelper.cornerRadius
 		cell.layer.borderWidth = 2
-		cell.layer.borderColor = designHelper.color3.cgColor
+		cell.layer.borderColor = designHelper.buttonTintColor.cgColor
 		
 		if indexPath.item == modifyCard!.filterNum {
 			cell.isSelected = true
