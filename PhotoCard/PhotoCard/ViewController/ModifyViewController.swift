@@ -133,6 +133,12 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	}
 
 	@objc func shareTapped(_ sender: UIBarButtonItem) {
+		let render = UIGraphicsImageRenderer(size: polaroidCardView.bounds.size)
+		let renderImage = render.image { _ in
+			polaroidCardView.drawHierarchy(in: polaroidCardView.bounds, afterScreenUpdates: true)}
+		guard let imageData = renderImage.pngData() else { return }
+		let renderUIImage = UIImage(data: imageData)!
+		saveImageToDocumentDirectory(imageName: "공유하기.png", image: renderUIImage)
 		print(#function)
 	}
 }

@@ -80,6 +80,7 @@ class MainViewController: UIViewController {
 		navigationController?.navigationBar.barTintColor = designHelper.viewBackgroundColor
 		self.tabBarController?.tabBar.barTintColor = designHelper.viewBackgroundColor
 		self.tabBarController?.tabBar.tintColor = designHelper.buttonTintColor
+		
     }
     
 	@objc func rightButtonClicked(_ sender: UIBarButtonItem) {
