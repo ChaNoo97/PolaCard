@@ -85,12 +85,10 @@ extension UIViewController {
     }
     
     func makeFilterImage(userSelectImage: UIImage, filterName: String) -> UIImage? {
-        let context = CIContext(options: nil)
         let originalCIImage = CIImage(image: userSelectImage)
         let filterImage = self.filter(originalCIImage!, filterName: filterName)!
-        let cgImage = context.createCGImage(filterImage, from: filterImage.extent)!
-        let image = UIImage(cgImage: cgImage, scale: userSelectImage.scale, orientation: userSelectImage.imageOrientation)
-        return image
+		let image2 = UIImage(ciImage: filterImage, scale: userSelectImage.scale, orientation: userSelectImage.imageOrientation)
+        return image2
     }
     
 //    func imageDownSize(imageURL: URL, pointSize: CGSize, scale: CGFloat) -> UIImage {
