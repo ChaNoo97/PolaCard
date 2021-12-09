@@ -7,23 +7,18 @@
 
 import UIKit
 
-//MARK: ViewController
 class AlbumViewController: UIViewController {
 	
 	@IBOutlet weak var albumCollectionView: UICollectionView!
 	
-	let designHelper = UIExtension()
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		navigationItem.title = "Album"
-		self.navigationController?.navigationBar.barTintColor = designHelper.viewBackgroundColor
 		albumCollectionView.delegate = self
 		albumCollectionView.dataSource = self
 		let nibName = UINib(nibName: AlbumCollectionViewCell.identifier, bundle: nil)
 		albumCollectionView.register(nibName, forCellWithReuseIdentifier: AlbumCollectionViewCell.identifier)
 		
-		// MARK: CollectionViewFlowLayout
         let layout = UICollectionViewFlowLayout()
 		let spacing: CGFloat = 10
 		let width = UIScreen.main.bounds.width - (3*spacing)
@@ -34,7 +29,6 @@ class AlbumViewController: UIViewController {
 		layout.scrollDirection = .vertical
 		
 		albumCollectionView.collectionViewLayout = layout
-		
     }
     
 

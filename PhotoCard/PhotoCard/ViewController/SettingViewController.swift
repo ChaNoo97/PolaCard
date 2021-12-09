@@ -25,9 +25,9 @@ class SettingViewController: UIViewController {
 		navigationItem.title = "Setting"
 		settingTableView.delegate = self
 		settingTableView.dataSource = self
-		self.view.backgroundColor = designHelper.viewBackgroundColor
-		settingTableView.backgroundColor = designHelper.viewBackgroundColor
-		self.navigationController?.navigationBar.barTintColor = designHelper.viewBackgroundColor
+		self.view.backgroundColor = designHelper.color1
+		settingTableView.backgroundColor = designHelper.color1
+		self.navigationController?.navigationBar.barTintColor = designHelper.color1
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +86,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = settingTableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier) as? SettingTableViewCell else {return UITableViewCell()}
-		cell.backgroundColor = designHelper.cardBackgroundColor
+		cell.backgroundColor = designHelper.color1Light
 		
 		if indexPath.section == 0 {
 			cell.nameLabel.text = settingKor[indexPath.row]

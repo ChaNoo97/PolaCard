@@ -16,10 +16,10 @@ class FilterCollectionViewCell: UICollectionViewCell {
 		didSet {
 			if isSelected {
 				layer.borderWidth = 2
-				layer.borderColor = designHelper.selectButtonColor.cgColor
+				layer.borderColor = designHelper.color0.cgColor
 			} else {
 				layer.borderWidth = 2
-				layer.borderColor = designHelper.buttonTintColor.cgColor
+				layer.borderColor = designHelper.color3.cgColor
 			}
 		}
 	}
