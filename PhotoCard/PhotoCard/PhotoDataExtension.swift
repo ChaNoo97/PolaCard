@@ -103,6 +103,12 @@ extension UIViewController {
 //        return UIImage(cgImage: downsampledImage)
 //    }
 	
+	func sharePolaCard(sharingView: UIView) -> UIImage {
+		let render = UIGraphicsImageRenderer(size: sharingView.bounds.size)
+		let renderImage = render.image { _ in
+			sharingView.drawHierarchy(in: sharingView.bounds, afterScreenUpdates: true)}
+		guard let imageData = renderImage.pngData() else { return UIImage() }
+		let renderUIImage = UIImage(data: imageData)!
+		return renderUIImage
+	}
 }
-
-

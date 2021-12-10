@@ -51,6 +51,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		polaroidCardView.layer.shadowOffset = CGSize(width: 10, height: 2)
 		polaroidCardView.layer.shadowRadius = designHelper.shadowRadius
 		
+		modifyWordingTextField.borderStyle = .none
 		modifyWordingTextField.delegate = self
 		
 		guard let modifyCard = modifyCard else {return}
@@ -133,12 +134,11 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	}
 
 	@objc func shareTapped(_ sender: UIBarButtonItem) {
-		let render = UIGraphicsImageRenderer(size: polaroidCardView.bounds.size)
-		let renderImage = render.image { _ in
-			polaroidCardView.drawHierarchy(in: polaroidCardView.bounds, afterScreenUpdates: true)}
-		guard let imageData = renderImage.pngData() else { return }
-		let renderUIImage = UIImage(data: imageData)!
-		saveImageToDocumentDirectory(imageName: "공유하기.png", image: renderUIImage)
+		let renderUIImage = sharePolaCard(sharingView: polaroidCardView)
+		
+		let vc = UIActivityViewController(activityItems: [renderUIImage], applicationActivities: nil)
+		vc.excludedActivityTypes = [.saveToCameraRoll]
+		present(vc, animated: true, completion: nil)
 		print(#function)
 	}
 }
