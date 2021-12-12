@@ -12,6 +12,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	
 	static let identifier = "ModifyViewController"
 	
+	@IBOutlet weak var sharingView: UIView!
 	@IBOutlet weak var modifyImageView: UIImageView!
 	@IBOutlet weak var modifyWordingTextField: UITextField!
 	@IBOutlet weak var saveDateLabel: UILabel!
@@ -35,6 +36,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		navigationItem.rightBarButtonItems = [save, share]
 		
 		self.view.backgroundColor = designHelper.viewBackgroundColor
+		sharingView.backgroundColor = designHelper.viewBackgroundColor
 		modifyImageView.backgroundColor = designHelper.cardBackgroundColor
 		polaroidCardView.backgroundColor = designHelper.cardBackgroundColor
 		saveDateLabel.backgroundColor = designHelper.cardBackgroundColor
@@ -134,7 +136,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	}
 
 	@objc func shareTapped(_ sender: UIBarButtonItem) {
-		let renderUIImage = sharePolaCard(sharingView: polaroidCardView)
+		let renderUIImage = sharePolaCard(sharingView: sharingView)
 		
 		let vc = UIActivityViewController(activityItems: [renderUIImage], applicationActivities: nil)
 		vc.excludedActivityTypes = [.saveToCameraRoll]
