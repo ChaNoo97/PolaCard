@@ -182,6 +182,14 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 
 		navigationController?.popViewController(animated: true)
 	}
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		navigationController?.navigationBar.isHidden = true
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		navigationController?.navigationBar.isHidden = false
+	}
 
 }
 

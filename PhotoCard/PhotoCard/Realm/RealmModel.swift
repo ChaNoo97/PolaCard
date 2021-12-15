@@ -25,15 +25,15 @@ class PolaroidCardData: Object {
 	}
 }
 
-class userAlbumData: Object {
-	@Persisted var albumName: String?
-	@Persisted var albumList: List<PolaroidCardData>
-	
-	@Persisted(primaryKey: true) var _id: ObjectId
-	
-	convenience init(albumName: String?, albumList: [PolaroidCardData]) {
-		self.init()
-		self.albumName = albumName
-		self.albumList.append(objectsIn: albumList)
-	}
-}
+//class userAlbumData: Object {
+//	@Persisted var albumName: String?
+//	@Persisted var albumList: List<PolaroidCardData>
+//	
+//	@Persisted(primaryKey: true) var _id: ObjectId
+//	
+//	convenience init(albumName: String?, albumList: [PolaroidCardData]) {
+//		self.init()
+//		self.albumName = albumName
+//		self.albumList.append(objectsIn: albumList)
+//	}
+//}
