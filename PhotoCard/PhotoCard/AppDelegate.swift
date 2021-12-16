@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 		Thread.sleep(forTimeInterval: 2)
 		IQKeyboardManager.shared.enable = true
+		IQKeyboardManager.shared.enableAutoToolbar = true
+		IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+		IQKeyboardManager.shared.layoutIfNeededOnUpdate = true
 		return true
 	}
 

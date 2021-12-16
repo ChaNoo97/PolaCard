@@ -44,11 +44,16 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	@IBOutlet weak var polaroidcardView: UIView!
 	@IBOutlet weak var placeholderLabel: UILabel!
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
 		
 		self.tabBarController?.tabBar.isHidden = true
 		self.tabBarController?.tabBar.isTranslucent = true
+		
+	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장하기", style: .plain, target: self, action: #selector(saveBtnTapped))
 		
@@ -56,8 +61,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		polaroidcardView.backgroundColor = designHelper.cardBackgroundColor
 		wordingTextField.backgroundColor = designHelper.cardBackgroundColor
 		imageDateLabel.backgroundColor = designHelper.cardBackgroundColor
+		imageDateLabel.textAlignment = .right
 		
-		placeholderLabel.font = designHelper.handWritingFont20
+		placeholderLabel.font = designHelper.kyobo19Font20
 		placeholderLabel.text = "아래 카메라/앨범 버튼을 이용하여 사진을 추가해주세요"
 		placeholderLabel.numberOfLines = 0
 		placeholderLabel.textAlignment = .center
@@ -80,9 +86,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 		wordingTextField.delegate = self
 		wordingTextField.placeholder = "사진의 경험을 적어보세요(25자 이내)"
-		wordingTextField.font = designHelper.handWritingFont20
+		wordingTextField.font = designHelper.kyobo19Font20
 		imageDateLabel.text = ""
-		imageDateLabel.font = designHelper.handWritingFont20
+		imageDateLabel.font = designHelper.kyobo19Font20
 		
 		filterCollectionView.delegate = self
 		filterCollectionView.dataSource = self
@@ -126,9 +132,20 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	func textFieldDidChangeSelection(_ textField: UITextField) {
+		print(#function)
 		designHelper.checkMaxLenght(textField: wordingTextField, maxLenght: 25)
 	}
-
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		print(#function)
+		navigationController?.navigationBar.tintColor = designHelper.clear
+		
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		print(#function)
+		navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
+	}
 	
 	func settingAlert(AuthString: String) {
 		if let appName = Bundle.main.infoDictionary!["CFBundleName"] as? String {
@@ -169,9 +186,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	
 	@objc func saveBtnTapped(_ sender: UIBarButtonItem) {
 		guard let image = value else {
-			return dismiss(animated: true, completion: nil)
+			return print("이미지없음")
 		}
-
 		let task = PolaroidCardData(wordingText: wordingTextField.text, imageDate: imageDateLabel.text!, filterNum: userFilterNum)
 
 		try! localRealm.write {
@@ -181,14 +197,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		saveImageToDocumentDirectory(imageName: "\(task._id).png", image: image)
 
 		navigationController?.popViewController(animated: true)
-	}
-	
-	func textFieldDidBeginEditing(_ textField: UITextField) {
-		navigationController?.navigationBar.isHidden = true
-	}
-	
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		navigationController?.navigationBar.isHidden = false
 	}
 
 }
@@ -249,14 +257,14 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 		if indexPath.row == 0 {
 			cell.filteredImage.image = value
 			cell.filterName.text = "원본"
-			cell.filterName.font = designHelper.handWritingFont15
+			cell.filterName.font = designHelper.kyobo19Font15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 		} else {
 			cell.filteredImage.image = value
 			cell.filteredImage.image = makeFilterImage(userSelectImage: (value ?? UIImage(named: "LunchImage"))!, filterName: ciFilters.filter[indexPath.row-1])
 			cell.filterName.text = ciFilters.filterKor[indexPath.row-1]
-			cell.filterName.font = designHelper.handWritingFont15
+			cell.filterName.font = designHelper.kyobo19Font15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 			

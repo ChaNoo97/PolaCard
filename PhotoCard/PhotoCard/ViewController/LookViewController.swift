@@ -53,7 +53,7 @@ extension LookViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		
 		cell.wordingLabel.backgroundColor = .orange
 		//폰트 적용 코드
-		cell.wordingLabel.font = designHelper.handWritingFont20
+		cell.wordingLabel.font = designHelper.kyobo19Font20
 		cell.wordingLabel.text = "오늘은 야구장에서 별 본날"
 		cell.imageDateLabel.backgroundColor = .cyan
 		return cell
