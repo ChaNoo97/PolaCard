@@ -23,6 +23,7 @@ class SettingViewController: UIViewController {
 		tasks = localRealm.objects(PolaroidCardData.self)
 		
 		navigationItem.title = "Setting"
+		navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: designHelper.buttonTintColor]
 		settingTableView.delegate = self
 		settingTableView.dataSource = self
 		self.view.backgroundColor = designHelper.viewBackgroundColor
@@ -90,12 +91,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 		
 		if indexPath.section == 0 {
 			cell.nameLabel.text = settingKor[indexPath.row]
-			cell.nameLabel.font = designHelper.handWritingFont20
+			cell.nameLabel.font = designHelper.kyobo19Font20
 		}
 		
 		if indexPath.section == 1 {
 			cell.nameLabel.text = "저장된 사진수: \(tasks.count)"
-			cell.nameLabel.font = designHelper.handWritingFont20
+			cell.nameLabel.font = designHelper.kyobo19Font20
 			if indexPath.row == 0 {
 				cell.selectionStyle = .none
 			}

@@ -12,6 +12,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	
 	static let identifier = "ModifyViewController"
 	
+	@IBOutlet weak var sharingView: UIView!
 	@IBOutlet weak var modifyImageView: UIImageView!
 	@IBOutlet weak var modifyWordingTextField: UITextField!
 	@IBOutlet weak var saveDateLabel: UILabel!
@@ -23,18 +24,21 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	let filters = ciFilterNames()
 	var modifyCard: PolaroidCardData?
 	var loadImage: UIImage?
-	
-	override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
 		
 		self.tabBarController?.tabBar.isHidden = true
 		self.tabBarController?.tabBar.isTranslucent = true
+	}
+	override func viewDidLoad() {
+        super.viewDidLoad()
 		
-		let save = UIBarButtonItem(title: "저장하기", style: .plain, target: self, action: #selector(saveTapped))
-		let share = UIBarButtonItem(title: "공유하기", style: .plain, target: self, action: #selector(shareTapped))
+		let save = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(saveTapped))
+		let share = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareTapped))
 		navigationItem.rightBarButtonItems = [save, share]
 		
 		self.view.backgroundColor = designHelper.viewBackgroundColor
+		sharingView.backgroundColor = designHelper.viewBackgroundColor
 		modifyImageView.backgroundColor = designHelper.cardBackgroundColor
 		polaroidCardView.backgroundColor = designHelper.cardBackgroundColor
 		saveDateLabel.backgroundColor = designHelper.cardBackgroundColor
@@ -51,6 +55,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		polaroidCardView.layer.shadowOffset = CGSize(width: 10, height: 2)
 		polaroidCardView.layer.shadowRadius = designHelper.shadowRadius
 		
+		modifyWordingTextField.borderStyle = .none
 		modifyWordingTextField.delegate = self
 		
 		guard let modifyCard = modifyCard else {return}
@@ -62,7 +67,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 			let filterImage = makeFilterImage(userSelectImage: loadImage!, filterName: filters.filter[filterNum-1])
 			modifyImageView.image = filterImage!
 		}
-		modifyWordingTextField.font = designHelper.handWritingFont20
+		modifyWordingTextField.font = designHelper.kyobo19Font20
 		if modifyCard.wordingText == "" {
 			modifyWordingTextField.placeholder = "사진의 경험을 적어주세요(25자 이내)"
 		} else {
@@ -70,7 +75,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		}
 		
 		saveDateLabel.text = modifyCard.imageDate
-		saveDateLabel.font = designHelper.handWritingFont20
+		saveDateLabel.font = designHelper.kyobo19Font20
 		saveDateLabel.textAlignment = .right
 		
 		let layout = UICollectionViewFlowLayout()
@@ -90,6 +95,15 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	
 	func textFieldDidChangeSelection(_ textField: UITextField) {
 		designHelper.checkMaxLenght(textField: modifyWordingTextField, maxLenght: 25)
+	}
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		navigationController?.navigationBar.tintColor = designHelper.clear
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		navigationController?.navigationBar.isHidden = false
+		navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
 	}
 	
 	@objc func saveTapped(_ sender: UIBarButtonItem) {
@@ -133,12 +147,14 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	}
 
 	@objc func shareTapped(_ sender: UIBarButtonItem) {
-		let render = UIGraphicsImageRenderer(size: polaroidCardView.bounds.size)
-		let renderImage = render.image { _ in
-			polaroidCardView.drawHierarchy(in: polaroidCardView.bounds, afterScreenUpdates: true)}
-		guard let imageData = renderImage.pngData() else { return }
-		let renderUIImage = UIImage(data: imageData)!
-		saveImageToDocumentDirectory(imageName: "공유하기.png", image: renderUIImage)
+		modifyWordingTextField.placeholder = ""
+		let renderUIImage = sharePolaCard(sharingView: sharingView)
+		
+		let vc = UIActivityViewController(activityItems: [renderUIImage], applicationActivities: nil)
+		vc.excludedActivityTypes = [.saveToCameraRoll]
+		present(vc, animated: true) {
+			self.modifyWordingTextField.placeholder = "사진의 경험을 적어주세요(25자 이내)"
+		}
 		print(#function)
 	}
 }
@@ -164,13 +180,13 @@ extension ModifyViewController: UICollectionViewDelegate, UICollectionViewDataSo
 		if indexPath.row == 0 {
 			cell.filteredImage.image = loadImage
 			cell.filterName.text = "원본"
-			cell.filterName.font = designHelper.handWritingFont15
+			cell.filterName.font = designHelper.kyobo19Font15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 		} else {
 			cell.filteredImage.image = makeFilterImage(userSelectImage: (loadImage ?? UIImage(systemName: "star"))!, filterName: filters.filter[indexPath.row-1])
 			cell.filterName.text = filters.filterKor[indexPath.row-1]
-			cell.filterName.font = designHelper.handWritingFont15
+			cell.filterName.font = designHelper.kyobo19Font15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 			

@@ -90,6 +90,15 @@ extension UIViewController {
 		let image2 = UIImage(ciImage: filterImage, scale: userSelectImage.scale, orientation: userSelectImage.imageOrientation)
         return image2
     }
+	
+	func sharePolaCard(sharingView: UIView) -> UIImage {
+		let render = UIGraphicsImageRenderer(size: sharingView.bounds.size)
+		let renderImage = render.image { _ in
+			sharingView.drawHierarchy(in: sharingView.bounds, afterScreenUpdates: true)}
+		guard let imageData = renderImage.pngData() else { return UIImage() }
+		let renderUIImage = UIImage(data: imageData)!
+		return renderUIImage
+	}
     
 //    func imageDownSize(imageURL: URL, pointSize: CGSize, scale: CGFloat) -> UIImage {
 //        let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
@@ -104,5 +113,3 @@ extension UIViewController {
 //    }
 	
 }
-
-

@@ -30,22 +30,25 @@ class MainViewController: UIViewController {
 	
 	@IBOutlet weak var mainCollectionView: UICollectionView!
 	
+//MARK: ViewWillAppear
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		print("main",#function)
 		self.tabBarController?.tabBar.isHidden = false
+		self.navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
 		mainCollectionView.reloadData()
 		// 처음 실행해도 오류 없음
 		mainCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
 		if tasks.count == 0 {
 			infoLabel.text = "우측 상단 + 버튼으로 이미지를 추가하세요."
 			infoLabel.textColor = UIColor.placeholderText
-			infoLabel.font = designHelper.handWritingFont20
+			infoLabel.font = designHelper.kyobo19Font20
 			infoLabel.textAlignment = .center
 		} else {
 			infoLabel.text = ""
 		}
 	}
-	
+//MARK: ViewDidLoad
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -76,7 +79,7 @@ class MainViewController: UIViewController {
 		let rightButton = UIBarButtonItem(image: UIImage(systemName: "plus.app"), style: .plain, target: self, action: #selector(rightButtonClicked(_:)))
 		navigationItem.setRightBarButton(rightButton, animated: true)
 		navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
-		
+		navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: designHelper.buttonTintColor]
 		navigationController?.navigationBar.barTintColor = designHelper.viewBackgroundColor
 		self.tabBarController?.tabBar.barTintColor = designHelper.viewBackgroundColor
 		self.tabBarController?.tabBar.tintColor = designHelper.buttonTintColor
@@ -111,15 +114,16 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 		row = tasks[indexPath.row]
 
 		//cell 파일로 옮기기
-		cell.imageDateLabel.font = designHelper.handWritingFont20
-		cell.wordingLabel.font = designHelper.handWritingFont20
+		cell.imageDateLabel.font = designHelper.kyobo19Font20
+		cell.imageDateLabel.textAlignment = .right
+		cell.wordingLabel.font = designHelper.kyobo19Font20
 		if let cnt = row.wordingText?.count {
 			if cnt > 27 {
-				cell.wordingLabel.font = designHelper.handWritingFont13
+				cell.wordingLabel.font = designHelper.kyobo19Font13
 			} else if cnt > 16 {
-				cell.wordingLabel.font = designHelper.handWritingFont15
+				cell.wordingLabel.font = designHelper.kyobo19Font15
 			} else {
-				cell.wordingLabel.font = designHelper.handWritingFont20
+				cell.wordingLabel.font = designHelper.kyobo19Font20
 			}
 		}
 		cell.wordingLabel.text = row.wordingText
