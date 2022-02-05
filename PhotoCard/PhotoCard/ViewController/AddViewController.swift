@@ -69,12 +69,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		placeholderLabel.textAlignment = .center
 		placeholderLabel.textColor = UIColor.placeholderText
 		
-		print("realm", localRealm.configuration.fileURL!)
-		
 		designHelper.buttonDesgin(btn: libraryButton, tintColor: designHelper.buttonTintColor, title: nil)
 		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
 		libraryButton.setImage(UIImage(named: "LibrarySymbol"), for: .normal)
-		
 		designHelper.buttonDesgin(btn: cameraButton, tintColor: designHelper.buttonTintColor, title: nil)
 		cameraButton.setImage(UIImage(systemName: "camera"), for: .normal)
 		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
@@ -97,14 +94,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 		picker.delegate = self
 		picker.allowsEditing = false
-		
-//		PHPhotoLibrary.requestAuthorization { (state) in
-//			print(state)
-//		}
-		AVCaptureDevice.requestAccess(for: .video) { (result) in
-			print(result)
-		}
-		
 		
         imageWidth = newAddedImage.bounds.width
        
@@ -132,18 +121,15 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	func textFieldDidChangeSelection(_ textField: UITextField) {
-		print(#function)
 		designHelper.checkMaxLenght(textField: wordingTextField, maxLenght: 25)
 	}
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
-		print(#function)
 		navigationController?.navigationBar.tintColor = designHelper.clear
 		
 	}
 	
 	func textFieldDidEndEditing(_ textField: UITextField) {
-		print(#function)
 		navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
 	}
 	
@@ -186,7 +172,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	
 	@objc func saveBtnTapped(_ sender: UIBarButtonItem) {
 		guard let image = value else {
-			return print("이미지없음")
+			return
 		}
 		let task = PolaroidCardData(wordingText: wordingTextField.text, imageDate: imageDateLabel.text!, filterNum: userFilterNum)
 
