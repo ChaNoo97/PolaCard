@@ -158,6 +158,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 //		} else {
 //			settingAlert(AuthString: "앨범")
 //		}
+		//test
 	}
 	
 	@IBAction func caremaButtonClicked(_ sender: UIButton) {
