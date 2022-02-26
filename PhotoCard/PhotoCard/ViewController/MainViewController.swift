@@ -33,7 +33,6 @@ class MainViewController: UIViewController {
 //MARK: ViewWillAppear
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		print("main",#function)
 		self.tabBarController?.tabBar.isHidden = false
 		self.navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
 		mainCollectionView.reloadData()
