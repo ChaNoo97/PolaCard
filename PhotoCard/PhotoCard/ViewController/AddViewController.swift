@@ -95,6 +95,10 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		picker.delegate = self
 		picker.allowsEditing = false
 		
+		AVCaptureDevice.requestAccess(for: .video) { (result) in
+					print(result)
+				}
+		
         imageWidth = newAddedImage.bounds.width
        
 		let layout = UICollectionViewFlowLayout()
@@ -134,17 +138,15 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	func settingAlert(AuthString: String) {
-		if let appName = Bundle.main.infoDictionary!["CFBundleName"] as? String {
-			let alert = UIAlertController(title: "설정", message: "\(appName)가 \(AuthString) 접근이 허용되어 있지 않습니다. 설정화면으로 가시겠습니까?", preferredStyle: .alert)
-			let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-			let confirmAction = UIAlertAction(title: "확인", style: .default) { action in
-				UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-			}
-			
-			alert.addAction(cancleAction)
-			alert.addAction(confirmAction)
-			self.present(alert, animated: true, completion: nil)
+		let alert = UIAlertController(title: "설정", message: "PolaCard가 \(AuthString) 접근이 허용되어 있지 않습니다. 설정화면으로 가시겠습니까?", preferredStyle: .alert)
+		let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+		let confirmAction = UIAlertAction(title: "확인", style: .default) { action in
+			UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
 		}
+		
+		alert.addAction(cancleAction)
+		alert.addAction(confirmAction)
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	@IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
