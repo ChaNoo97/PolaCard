@@ -36,49 +36,45 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     var imageWidth: CGFloat = 0
 	
 	@IBOutlet weak var newAddedImage: UIImageView!
-	@IBOutlet weak var backButton: UIButton!
 	@IBOutlet weak var libraryButton: UIButton!
 	@IBOutlet weak var cameraButton: UIButton!
 	@IBOutlet weak var wordingTextField: UITextField!
 	@IBOutlet weak var imageDateLabel: UILabel!
-	@IBOutlet weak var saveButton: UIButton!
 	@IBOutlet weak var filterCollectionView: UICollectionView!
 	@IBOutlet weak var polaroidcardView: UIView!
-	@IBOutlet weak var topView: UIView!
 	@IBOutlet weak var placeholderLabel: UILabel!
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		self.tabBarController?.tabBar.isHidden = true
+		self.tabBarController?.tabBar.isTranslucent = true
+		
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.view.backgroundColor = designHelper.color1
-		topView.backgroundColor = designHelper.color1
-		polaroidcardView.backgroundColor = designHelper.color1Light
-		wordingTextField.backgroundColor = designHelper.color1Light
-		imageDateLabel.backgroundColor = designHelper.color1Light
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장하기", style: .plain, target: self, action: #selector(saveBtnTapped))
 		
+		self.view.backgroundColor = designHelper.viewBackgroundColor
+		polaroidcardView.backgroundColor = designHelper.cardBackgroundColor
+		wordingTextField.backgroundColor = designHelper.cardBackgroundColor
+		imageDateLabel.backgroundColor = designHelper.cardBackgroundColor
+		imageDateLabel.textAlignment = .right
 		
-		placeholderLabel.font = designHelper.handWritingFont20
+		placeholderLabel.font = designHelper.kyobo19Font20
 		placeholderLabel.text = "아래 카메라/앨범 버튼을 이용하여 사진을 추가해주세요"
 		placeholderLabel.numberOfLines = 0
 		placeholderLabel.textAlignment = .center
 		placeholderLabel.textColor = UIColor.placeholderText
 		
-		print("realm", localRealm.configuration.fileURL!)
-		
-		designHelper.buttonDesgin(btn: backButton, tintColor: designHelper.color3, title: "뒤로가기")
-		backButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: backButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
-		
-		designHelper.buttonDesgin(btn: libraryButton, tintColor: designHelper.color3, title: nil)
-		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
+		designHelper.buttonDesgin(btn: libraryButton, tintColor: designHelper.buttonTintColor, title: nil)
+		designHelper.buttonLayerDesign(btn: libraryButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
 		libraryButton.setImage(UIImage(named: "LibrarySymbol"), for: .normal)
-		
-		designHelper.buttonDesgin(btn: cameraButton, tintColor: designHelper.color3, title: nil)
+		designHelper.buttonDesgin(btn: cameraButton, tintColor: designHelper.buttonTintColor, title: nil)
 		cameraButton.setImage(UIImage(systemName: "camera"), for: .normal)
-		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
-		
-		designHelper.addViewSaveButton(btn: saveButton)
-		designHelper.buttonLayerDesign(btn: saveButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
+		designHelper.buttonLayerDesign(btn: cameraButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.buttonTintColor, backgroundColor: nil)
 		
 		polaroidcardView.layer.cornerRadius = designHelper.cornerRadius
 		polaroidcardView.layer.shadowOffset = CGSize(width: 10, height: 2)
@@ -87,9 +83,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 		wordingTextField.delegate = self
 		wordingTextField.placeholder = "사진의 경험을 적어보세요(25자 이내)"
-		wordingTextField.font = designHelper.handWritingFont20
+		wordingTextField.font = designHelper.kyobo19Font20
 		imageDateLabel.text = ""
-		imageDateLabel.font = designHelper.handWritingFont20
+		imageDateLabel.font = designHelper.kyobo19Font20
 		
 		filterCollectionView.delegate = self
 		filterCollectionView.dataSource = self
@@ -99,13 +95,9 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		picker.delegate = self
 		picker.allowsEditing = false
 		
-//		PHPhotoLibrary.requestAuthorization { (state) in
-//			print(state)
-//		}
 		AVCaptureDevice.requestAccess(for: .video) { (result) in
-			print(result)
-		}
-		
+					print(result)
+				}
 		
         imageWidth = newAddedImage.bounds.width
        
@@ -122,7 +114,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		filterCollectionView.collectionViewLayout = layout
 		
 		filterCollectionView.layer.cornerRadius = designHelper.cornerRadius
-		filterCollectionView.backgroundColor = designHelper.color1
+		filterCollectionView.backgroundColor = designHelper.viewBackgroundColor
 		
 		filterCollectionView.isHidden = true
     }
@@ -135,28 +127,30 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 	func textFieldDidChangeSelection(_ textField: UITextField) {
 		designHelper.checkMaxLenght(textField: wordingTextField, maxLenght: 25)
 	}
-
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		navigationController?.navigationBar.tintColor = designHelper.clear
+		
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
+	}
 	
 	func settingAlert(AuthString: String) {
-		if let appName = Bundle.main.infoDictionary!["CFBundleName"] as? String {
-			let alert = UIAlertController(title: "설정", message: "\(appName)가 \(AuthString) 접근이 허용되어 있지 않습니다. 설정화면으로 가시겠습니까?", preferredStyle: .alert)
-			let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-			let confirmAction = UIAlertAction(title: "확인", style: .default) { action in
-				UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-			}
-			
-			alert.addAction(cancleAction)
-			alert.addAction(confirmAction)
-			self.present(alert, animated: true, completion: nil)
+		let alert = UIAlertController(title: "설정", message: "PolaCard가 \(AuthString) 접근이 허용되어 있지 않습니다. 설정화면으로 가시겠습니까?", preferredStyle: .alert)
+		let cancleAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+		let confirmAction = UIAlertAction(title: "확인", style: .default) { action in
+			UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
 		}
+		
+		alert.addAction(cancleAction)
+		alert.addAction(confirmAction)
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	@IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
 		view.endEditing(true)
-	}
-
-	@IBAction func backButtonClicked(_ sender: UIButton) {
-		dismiss(animated: true, completion: nil)
 	}
 	
 	@IBAction func libraryButtonclicked(_ sender: UIButton) {
@@ -178,22 +172,21 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 		
 	}
 	
-	@IBAction func saveButtonClicked(_ sender: UIButton) {
-		
+	@objc func saveBtnTapped(_ sender: UIBarButtonItem) {
 		guard let image = value else {
-			return dismiss(animated: true, completion: nil)
+			return
 		}
-		
 		let task = PolaroidCardData(wordingText: wordingTextField.text, imageDate: imageDateLabel.text!, filterNum: userFilterNum)
-		
+
 		try! localRealm.write {
 			localRealm.add(task)
 		}
-		
-        saveImageToDocumentDirectory(imageName: "\(task._id).png", image: image)
-		
-		dismiss(animated: true, completion: nil)
+
+		saveImageToDocumentDirectory(imageName: "\(task._id).png", image: image)
+
+		navigationController?.popViewController(animated: true)
 	}
+
 }
 
 extension AddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -245,21 +238,21 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
 		
 		cell.layer.cornerRadius = designHelper.cornerRadius
 		cell.layer.borderWidth = 2
-		cell.layer.borderColor = designHelper.color3.cgColor
+		cell.layer.borderColor = designHelper.buttonTintColor.cgColor
 		
 		filterCollectionView.selectItem(at: IndexPath.init(row: 0, section: 0), animated: true, scrollPosition: .init())
 	
 		if indexPath.row == 0 {
 			cell.filteredImage.image = value
 			cell.filterName.text = "원본"
-			cell.filterName.font = designHelper.handWritingFont15
+			cell.filterName.font = designHelper.kyobo19Font15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 		} else {
 			cell.filteredImage.image = value
 			cell.filteredImage.image = makeFilterImage(userSelectImage: (value ?? UIImage(named: "LunchImage"))!, filterName: ciFilters.filter[indexPath.row-1])
 			cell.filterName.text = ciFilters.filterKor[indexPath.row-1]
-			cell.filterName.font = designHelper.handWritingFont15
+			cell.filterName.font = designHelper.kyobo19Font15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 			

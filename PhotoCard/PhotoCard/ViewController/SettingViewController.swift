@@ -23,11 +23,12 @@ class SettingViewController: UIViewController {
 		tasks = localRealm.objects(PolaroidCardData.self)
 		
 		navigationItem.title = "Setting"
+		navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: designHelper.buttonTintColor]
 		settingTableView.delegate = self
 		settingTableView.dataSource = self
-		self.view.backgroundColor = designHelper.color1
-		settingTableView.backgroundColor = designHelper.color1
-		self.navigationController?.navigationBar.barTintColor = designHelper.color1
+		self.view.backgroundColor = designHelper.viewBackgroundColor
+		settingTableView.backgroundColor = designHelper.viewBackgroundColor
+		self.navigationController?.navigationBar.barTintColor = designHelper.viewBackgroundColor
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -86,16 +87,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = settingTableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier) as? SettingTableViewCell else {return UITableViewCell()}
-		cell.backgroundColor = designHelper.color1Light
+		cell.backgroundColor = designHelper.cardBackgroundColor
 		
 		if indexPath.section == 0 {
 			cell.nameLabel.text = settingKor[indexPath.row]
-			cell.nameLabel.font = designHelper.handWritingFont20
+			cell.nameLabel.font = designHelper.kyobo19Font20
 		}
 		
 		if indexPath.section == 1 {
 			cell.nameLabel.text = "저장된 사진수: \(tasks.count)"
-			cell.nameLabel.font = designHelper.handWritingFont20
+			cell.nameLabel.font = designHelper.kyobo19Font20
 			if indexPath.row == 0 {
 				cell.selectionStyle = .none
 			}

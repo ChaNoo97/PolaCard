@@ -118,13 +118,13 @@
 		FE7491F72744DCD200AB8995 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FE7491F82744DCE600AB8995 /* AlbumViewController.swift */,
 				FE7491FE2744DDF200AB8995 /* MainViewController.swift */,
-				FE7492002744DE0700AB8995 /* SettingViewController.swift */,
 				FE7492102746241E00AB8995 /* AddViewController.swift */,
+				FE7491F82744DCE600AB8995 /* AlbumViewController.swift */,
+				FE7492002744DE0700AB8995 /* SettingViewController.swift */,
+				FE7492162746244800AB8995 /* ModifyViewController.swift */,
 				FE7492122746242A00AB8995 /* PickingViewController.swift */,
 				FE7492142746243D00AB8995 /* LookViewController.swift */,
-				FE7492162746244800AB8995 /* ModifyViewController.swift */,
 				FE640D50275682CB00AFD405 /* LicenseViewController.swift */,
 			);
 			path = ViewController;
@@ -455,7 +455,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = NNJ9X2K872;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoCard/Info.plist;
@@ -474,7 +474,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Hoo.PhotoCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -489,7 +489,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = NNJ9X2K872;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoCard/Info.plist;
@@ -508,7 +508,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Hoo.PhotoCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

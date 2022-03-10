@@ -12,12 +12,11 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	
 	static let identifier = "ModifyViewController"
 	
+	@IBOutlet weak var sharingView: UIView!
 	@IBOutlet weak var modifyImageView: UIImageView!
 	@IBOutlet weak var modifyWordingTextField: UITextField!
 	@IBOutlet weak var saveDateLabel: UILabel!
 	@IBOutlet weak var polaroidCardView: UIView!
-	@IBOutlet weak var modifyButton: UIButton!
-	@IBOutlet weak var backButton: UIButton!
 	@IBOutlet weak var modifyCollectionView: UICollectionView!
 	
 	let localRealm = try! Realm()
@@ -25,14 +24,25 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 	let filters = ciFilterNames()
 	var modifyCard: PolaroidCardData?
 	var loadImage: UIImage?
-	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		self.tabBarController?.tabBar.isHidden = true
+		self.tabBarController?.tabBar.isTranslucent = true
+	}
 	override func viewDidLoad() {
         super.viewDidLoad()
-		self.view.backgroundColor = designHelper.color1
-		modifyImageView.backgroundColor = designHelper.color1Light
-		polaroidCardView.backgroundColor = designHelper.color1Light
-		saveDateLabel.backgroundColor = designHelper.color1Light
-		modifyWordingTextField.backgroundColor = designHelper.color1Light
+		
+		let save = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(saveTapped))
+		let share = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareTapped))
+		navigationItem.rightBarButtonItems = [save, share]
+		
+		self.view.backgroundColor = designHelper.viewBackgroundColor
+		sharingView.backgroundColor = designHelper.viewBackgroundColor
+		modifyImageView.backgroundColor = designHelper.cardBackgroundColor
+		polaroidCardView.backgroundColor = designHelper.cardBackgroundColor
+		saveDateLabel.backgroundColor = designHelper.cardBackgroundColor
+		modifyWordingTextField.backgroundColor = designHelper.cardBackgroundColor
 		
 		modifyCollectionView.delegate = self
 		modifyCollectionView.dataSource = self
@@ -45,6 +55,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		polaroidCardView.layer.shadowOffset = CGSize(width: 10, height: 2)
 		polaroidCardView.layer.shadowRadius = designHelper.shadowRadius
 		
+		modifyWordingTextField.borderStyle = .none
 		modifyWordingTextField.delegate = self
 		
 		guard let modifyCard = modifyCard else {return}
@@ -56,7 +67,7 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 			let filterImage = makeFilterImage(userSelectImage: loadImage!, filterName: filters.filter[filterNum-1])
 			modifyImageView.image = filterImage!
 		}
-		modifyWordingTextField.font = designHelper.handWritingFont20
+		modifyWordingTextField.font = designHelper.kyobo19Font20
 		if modifyCard.wordingText == "" {
 			modifyWordingTextField.placeholder = "사진의 경험을 적어주세요(25자 이내)"
 		} else {
@@ -64,14 +75,8 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		}
 		
 		saveDateLabel.text = modifyCard.imageDate
-		saveDateLabel.font = designHelper.handWritingFont20
+		saveDateLabel.font = designHelper.kyobo19Font20
 		saveDateLabel.textAlignment = .right
-		designHelper.buttonDesgin(btn: modifyButton, tintColor: designHelper.color3, title: "수정/삭제")
-		modifyButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: modifyButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
-		designHelper.buttonDesgin(btn: backButton, tintColor: designHelper.color3, title: "뒤로가기")
-		backButton.titleLabel?.font = designHelper.handWritingFont15
-		designHelper.buttonLayerDesign(btn: backButton, borderWidthValue: 2, cornerRadiusValue: designHelper.cornerRadius, borderColor: designHelper.color3, backgroundColor: nil)
 		
 		let layout = UICollectionViewFlowLayout()
 		let spacing: CGFloat = 10
@@ -84,59 +89,74 @@ class ModifyViewController: UIViewController, UITextFieldDelegate {
 		modifyCollectionView.collectionViewLayout = layout
 		
 		modifyCollectionView.layer.cornerRadius = designHelper.cornerRadius
-		modifyCollectionView.backgroundColor = designHelper.color1
+		modifyCollectionView.backgroundColor = designHelper.viewBackgroundColor
 		
     }
 	
 	func textFieldDidChangeSelection(_ textField: UITextField) {
 		designHelper.checkMaxLenght(textField: modifyWordingTextField, maxLenght: 25)
 	}
-
-
-	@IBAction func backButtonClicked(_ sender: UIButton) {
-		dismiss(animated: true, completion: nil)
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		navigationController?.navigationBar.tintColor = designHelper.clear
 	}
 	
-	@IBAction func modifyButtonClicked(_ sender: UIButton) {
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		navigationController?.navigationBar.isHidden = false
+		navigationController?.navigationBar.tintColor = designHelper.buttonTintColor
+	}
+	
+	@objc func saveTapped(_ sender: UIBarButtonItem) {
 		
 		let actionSheet = UIAlertController(title: nil, message: "수정/삭제", preferredStyle: .actionSheet)
-		
+
 		let modify = UIAlertAction(title: "수정", style: .default) { action in
-			
+
 			try! self.localRealm.write {
 				self.modifyCard?.wordingText = self.modifyWordingTextField.text
 			}
-			self.dismiss(animated: true, completion: nil)
+			self.navigationController?.popViewController(animated: true)
 		}
 		let delete = UIAlertAction(title: "삭제", style: .destructive) { action in
-			
+
 			let alert = UIAlertController(title: nil, message: "삭제하시겠습니까?", preferredStyle: .alert)
-			
+
 			let destructive = UIAlertAction(title: "삭제", style: .destructive) { action in
 				self.deleteImageToDocumentDirectory(imageName: "\(self.modifyCard!._id).png")
 				try! self.localRealm.write {
 					self.localRealm.delete(self.modifyCard!)
-					self.dismiss(animated: true, completion: nil)
+					self.navigationController?.popViewController(animated: true)
 				}
 			}
 			let cancle = UIAlertAction(title: "취소", style: .cancel) { action in
-				
+
 			}
-			
+
 			alert.addAction(destructive)
 			alert.addAction(cancle)
-			
+
 			self.present(alert, animated: true, completion: nil)
 		}
 		let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-		
+
 		actionSheet.addAction(modify)
 		actionSheet.addAction(delete)
 		actionSheet.addAction(cancel)
-		
+
 		present(actionSheet, animated: true, completion: nil)
 	}
-	
+
+	@objc func shareTapped(_ sender: UIBarButtonItem) {
+		modifyWordingTextField.placeholder = ""
+		let renderUIImage = sharePolaCard(sharingView: sharingView)
+		
+		let vc = UIActivityViewController(activityItems: [renderUIImage], applicationActivities: nil)
+		vc.excludedActivityTypes = [.saveToCameraRoll]
+		present(vc, animated: true) {
+			self.modifyWordingTextField.placeholder = "사진의 경험을 적어주세요(25자 이내)"
+		}
+		print(#function)
+	}
 }
 
 extension ModifyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -150,7 +170,7 @@ extension ModifyViewController: UICollectionViewDelegate, UICollectionViewDataSo
 		
 		cell.layer.cornerRadius = designHelper.cornerRadius
 		cell.layer.borderWidth = 2
-		cell.layer.borderColor = designHelper.color3.cgColor
+		cell.layer.borderColor = designHelper.buttonTintColor.cgColor
 		
 		if indexPath.item == modifyCard!.filterNum {
 			cell.isSelected = true
@@ -160,13 +180,13 @@ extension ModifyViewController: UICollectionViewDelegate, UICollectionViewDataSo
 		if indexPath.row == 0 {
 			cell.filteredImage.image = loadImage
 			cell.filterName.text = "원본"
-			cell.filterName.font = designHelper.handWritingFont15
+			cell.filterName.font = designHelper.kyobo19Font15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 		} else {
 			cell.filteredImage.image = makeFilterImage(userSelectImage: (loadImage ?? UIImage(systemName: "star"))!, filterName: filters.filter[indexPath.row-1])
 			cell.filterName.text = filters.filterKor[indexPath.row-1]
-			cell.filterName.font = designHelper.handWritingFont15
+			cell.filterName.font = designHelper.kyobo19Font15
 			cell.filterName.textAlignment = .center
 			cell.filterName.sizeToFit()
 			
